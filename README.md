@@ -1,6 +1,8 @@
 # React
 
-npx create-react-app my-app
+npm init react-app projectname
+
+npm start
 
 if it not work try
 
@@ -8,9 +10,6 @@ if it not work try
   
   2- npx create-react-app my-app
   
-  3- npm init react-app projectname
+ 
   
-  4- cd projectname
-  
-  5- npm start
   
