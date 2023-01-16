@@ -37,4 +37,8 @@ if it not work try
       3-for use a- import   b- <Wellcome />
           
   
+  نکات :
   
+      هر فایلی فقط یک default میتواند export کند که نحوه فراخوانی ان به شکل import functionname میباشد و به شکل <Wellcome /> استفاده میشود حرف اول ان بزرگ باشد
+      
+      اگر قبل هر فانکشن export گذاشته شود نحوه فراخوانی از بیرون باید به شکل import {functionname } باشد
