@@ -10,3 +10,7 @@ if it not work try
   
   3- npm init react-app projectname
   
+  4- cd projectname
+  
+  5- npm start
+  
