@@ -13,6 +13,9 @@ if it not work try
   2- npx create-react-app my-app
   
  # index.html & index.js
+ 
  فایل index.js یک فانکشن app.js زا فراخوانی می کند کد درون کامپوننت app.js نوشته می شود
+ 
+ import react from 'react' for use jsx in file
   
   
