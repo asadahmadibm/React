@@ -17,7 +17,7 @@ if it not work try
  فایل index.js یک فانکشن app.js زا فراخوانی می کند کد درون کامپوننت app.js نوشته می شود
     
  # create functional component
-      
+
       1- create js file anywhere
  
       2-Add this codes
@@ -42,3 +42,19 @@ if it not work try
   هر فایلی فقط یک default میتواند export کند که نحوه فراخوانی ان به شکل import functionname میباشد و به شکل <Wellcome /> استفاده میشود حرف اول ان بزرگ باشد
       
   اگر قبل هر فانکشن export گذاشته شود نحوه فراخوانی از بیرون باید به شکل import {functionname } باشد
+
+ # prototpe
+
+      npm install --save prop-types    
+      
+      import PropTypes from 'prop-types';
+      
+      می توان برای ورودیها تایپ مشخص کرد در هر کامپوننت در اخر بعد از دستور export default این نوعها را برای ورودی تعریف می کنیم مثال
+      
+      Wellcome.propTypes = {
+      
+        name: PropTypes.string.isRequired,
+        
+        age:PropTypes.number.isRequired
+        
+      };
