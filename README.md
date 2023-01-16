@@ -4,6 +4,8 @@ npm init react-app projectname
 
 npm start
 
+npm run build
+
 if it not work try
 
   1- npm config set registry https://registry.npm.taobao.org
