@@ -15,6 +15,7 @@ if it not work try
  # index.html & index.js
  
  فایل index.js یک فانکشن app.js زا فراخوانی می کند کد درون کامپوننت app.js نوشته می شود
+    
     create functional component
       
       1- create js file anywhere
