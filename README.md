@@ -15,7 +15,25 @@ if it not work try
  # index.html & index.js
  
  فایل index.js یک فانکشن app.js زا فراخوانی می کند کد درون کامپوننت app.js نوشته می شود
+    create functional component
+      
+      1- create js file anywhere
  
- import react from 'react' for use jsx in file
+      2-Add this codes
+      
+          import react from 'react' //for use jsx in file
+          
+          function Wellcome()
+          
+          {
+          
+          return ();
+          
+          }
+          
+          export default Wellcome
+          
+      3-for use a- import   b- <Wellcome />
+          
   
   
