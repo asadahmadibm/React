@@ -13,6 +13,6 @@ if it not work try
   2- npx create-react-app my-app
   
  # index.html & index.js
- فایل ایندکس جی اس یک فانکشن از اپ جی اس زا فراخوانی می کند کد درون کامپوننت اپ نوشته می شود
+ فایل index.js یک فانکشن app.js زا فراخوانی می کند کد درون کامپوننت app.js نوشته می شود
   
   
