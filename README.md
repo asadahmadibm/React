@@ -49,9 +49,9 @@ if it not work try
       
       import PropTypes from 'prop-types';
       
-      می توان برای ورودیها تایپ مشخص کرد در هر کامپوننت در اخر بعد از دستور export default این نوعها را برای ورودی تعریف می کنیم مثال
+  می توان برای ورودیها تایپ مشخص کرد در هر کامپوننت در اخر بعد از دستور export default این نوعها را برای ورودی تعریف می کنیم مثال
       
-      Wellcome.propTypes = {
+      Wellcome.propTypes = {  //wellcome is functional component
       
         name: PropTypes.string.isRequired,
         
