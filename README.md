@@ -64,3 +64,48 @@ if it not work try
         age:PropTypes.number.isRequired
         
       };
+      
+# define variable in functional component
+
+		1- import {usestate} from 'react'
+
+		2- const[varname,setvarname]=usestate(defaultvar)
+
+		3- use setvarname(newvalue) to set to new value
+
+		save value input on change to name state
+		1- define varable const[name,setname]=usestate('')
+		2- <input value={name} onchange={handlechange}
+
+		3- handlechange=(e)=>{
+			setname(e.target.value)
+			}
+			
+			
+			
+# define valiable in class component			
+			
+		1- this.state.varname
+
+		2- for set varname use this.setstate
+
+		3- use varname in setstate
+
+		example
+
+		constructor ()	
+
+		{
+
+		this.state={
+
+			varname:defualtvalue
+			
+			}
+			
+		}
+
+		<button onclick={()=>this.setstate({count:this.state.count+!})}>
+
+		<input name="name" value={this.state.name} onchange={()=>this.setstate({name:e.target.value})}
+	      
