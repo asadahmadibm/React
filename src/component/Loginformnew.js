@@ -1,31 +1,38 @@
 import React from 'react';
+import httpcaller from '../service/apiservice'
+
 import { Button, Form, Input, InputNumber } from 'antd';
+
 
 export const layout = {
     labelCol: {
-      span: 8,
+        span: 8,
     },
     wrapperCol: {
-      span: 16,
+        span: 16,
     },
-  };
-  
-  /* eslint-disable no-template-curly-in-string */
-  export const validateMessages = {
+};
+
+/* eslint-disable no-template-curly-in-string */
+export const validateMessages = {
     required: '${label} is required!',
     types: {
-      email: '${label} is not a valid email!',
-      number: '${label} is not a valid number!',
+        email: '${label} is not a valid email!',
+        number: '${label} is not a valid number!',
     },
     number: {
-      range: '${label} must be between ${min} and ${max}',
+        range: '${label} must be between ${min} and ${max}',
     },
-  };
+};
 
-  const Loginformnew=() =>
-  {
+const Loginformnew = () => {
+
     const onFinish = (values) => {
         alert(JSON.stringify(values));
+        const s=httpcaller.get();
+        
+        console.log(JSON.stringify(s));
+   
         console.log(JSON.stringify(values));
     };
     return (
@@ -85,4 +92,4 @@ export const layout = {
 
     );
 }
-  export default Loginformnew;
+export default Loginformnew;
