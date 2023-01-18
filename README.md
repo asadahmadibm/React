@@ -135,48 +135,43 @@ if it not work try
 
 			استفاده از پارامتهای ارسالی از طریق route به فرم
 
-			import React,{useEffect} from 'react';
+		import React,{useEffect} from 'react';
 
-			const EditStudent = (props)=>{
+		const EditStudent = (props)=>{
 		    useEffect(()=>{
 			console.log(props.match.params);
 
-		    },[])
+		},[])
 
 
-			انتخای یکی از رویتهایی که مسیر یکی است ولی پارامتر آن متفابت است Switch
+			انتخاب یکی از رویتهایی که مسیر یکی است ولی پارامتر آن متفابت است Switch
 
 
 			رفتن به روت از طریق دستور
 		import {  withRouter } from "react-router-dom";
 
-			 props.history.push({pathname:'/student/'+id}); or
-			 props.history.push('/student/'+id)
+		props.history.push({pathname:'/student/'+id}); or
+		props.history.push('/student/'+id)
+		
+		or
+		
+		import { useNavigate  } from "react-router-dom";
+		const navigate = useNavigate();
+		navigate('/Loginformnew');
+		navigate('/Players', {
+		      state: {
+			userId: id,
+		      }
+		    });
 
 
 
 			ریدایرکت شدن
 
 
-				 props.history.Replace('/student/'+id)
+		props.history.Replace('/student/'+id)
 
-				 or
-
-		import {Redirect} from 'react-router-dom';
-
-		  const[result,setResult] = useState(false);
-
-		before return :
-		    let redirect = null;
-		    if(result){
-		      redirect = <Redirect to="/" />
-		    }
-
-			after return line :
-			 <React.Fragment>
-			{redirect}
-					...
-			</React.Fragment>		
+	
 
 		use lazy
 
