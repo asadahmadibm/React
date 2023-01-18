@@ -10,7 +10,7 @@ if it not work try
 
   1- npm config set registry https://registry.npm.taobao.org
   
-  2- npx create-react-app my-app
+  2- npm create-react-app my-app
   
  # index.html & index.js
  
@@ -109,3 +109,85 @@ if it not work try
 
 		<input name="name" value={this.state.name} onchange={()=>this.setstate({name:e.target.value})}
 	      
+# Routing	
+
+		npm i --save react-router react-router-dom
+
+		import Loginformnew from './component/Loginformnew';
+		import Home from './component/home'
+		import {BrowserRouter , Route, Routes, Link} from "react-router-dom";
+
+		    <BrowserRouter>
+		      <ul>
+			  <li ><Link to='/Home'> home</Link></li>
+				  <li ><Link to={{pathname:"/Home2",search:"?sort=name",state:{fromDashboard:true}}}> home2</Link></li>
+			  <li ><Link to='/Loginformnew'> Loginformnew</Link></li>
+		      </ul>
+		      <Routes>
+			  <Route exact path='/home' element={<Home />} />
+			  <Route exact path='/Loginformnew' element={<Loginformnew />} />
+		      </Routes>    
+		    </BrowserRouter>
+
+
+		دسترسی به پارامترهای روت اصلی در فرزند استفاده از
+		import {  withRouter } from "react-router-dom";
+
+			استفاده از پارامتهای ارسالی از طریق route به فرم
+
+		import React,{useEffect} from 'react';
+
+		const EditStudent = (props)=>{
+		    useEffect(()=>{
+			console.log(props.match.params);
+
+		},[])
+
+
+			انتخاب یکی از رویتهایی که مسیر یکی است ولی پارامتر آن متفابت است Switch
+
+
+			رفتن به روت از طریق دستور
+		import {  withRouter } from "react-router-dom";
+
+		props.history.push({pathname:'/student/'+id}); or
+		props.history.push('/student/'+id)
+		
+		or
+		
+		import { useNavigate  } from "react-router-dom";
+		const navigate = useNavigate();
+		navigate('/Loginformnew');
+		navigate('/Players', {
+		      state: {
+			userId: id,
+		      }
+		    });
+		    
+		Then you can reference props.location.state.userId in the Players page.
+		// Players Page
+		import { useLocation } from "react-router-dom";
+		const location = useLocation();
+		// get userId
+		let userId = location.state.userId;
+
+
+
+			ریدایرکت شدن
+
+
+		props.history.Replace('/student/'+id)
+
+	
+
+		use lazy
+
+		const AddStudent = React.lazy(()=>import('../src/pages/AddStudent')) ;
+
+		 <Route path="/add-student" exact render={()=>(
+			      <Suspense fallback={<p>...loading</p>}>
+				<AddStudent />
+			      </Suspense>)} 
+			    />
+
+	
