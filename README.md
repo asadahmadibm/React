@@ -193,4 +193,4 @@ if it not work try
 # Ag-grid
 
 	npm install --save ag-grid-community
-		npm install --save ag-grid-react
+	npm install --save ag-grid-react
