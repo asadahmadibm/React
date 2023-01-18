@@ -10,7 +10,9 @@ if it not work try
 
   1- npm config set registry https://registry.npm.taobao.org
   
-  2- npm create-react-app my-app
+  2-npm install -g create-react-app
+  
+  3- npm create-react-app my-app
   
  # index.html & index.js
  
