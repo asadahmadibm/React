@@ -163,6 +163,13 @@ if it not work try
 			userId: id,
 		      }
 		    });
+		    
+		Then you can reference props.location.state.userId in the Players page.
+		// Players Page
+		import { useLocation } from "react-router-dom";
+		const location = useLocation();
+		// get userId
+		let userId = location.state.userId;
 
 
 
