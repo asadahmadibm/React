@@ -8,7 +8,7 @@ npm run build
 
 if it not work try
 
-  1- npm config set registry https://registry.npm.taobao.org
+  1- npm config set registry https://registry.npm.taobao.org  or npm config set registry https://registry.npmjs.org/
   
   2-npm install -g create-react-app
   
