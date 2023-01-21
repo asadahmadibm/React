@@ -196,3 +196,42 @@ if it not work try
 
 	npm install --save ag-grid-community
 	npm install --save ag-grid-react
+	
+# axios request to server
+
+	npm install axios
+	
+	add bae url & header to index.js
+	axios.defaults.baseURL = 'https://jsonplaceholder.ir'
+	axios.defaults.headers.post['Contetnt-Type'] = 'application/json';
+	
+	for use in js file
+	import axios from '../axios';
+	
+	axios.get('/posts')
+        .then(response=>{
+          console.log(response.data);
+        }).catch(error=>{
+          console.log(error)
+        });
+	
+	// POST request using axios with set headers & error handling
+	    const article = { title: 'React POST Request Example' };
+	    const headers = { 
+		'Authorization': 'Bearer my-token',
+		'My-Custom-Header': 'foobar'
+	    };
+	    axios.post('https://reqres.in/api/articles', article, { headers })
+		.then(response => this.setState({ articleId: response.data.id }));
+		.catch(error => {
+		    this.setState({ errorMessage: error.message });
+		    console.error('There was an error!', error);
+		});
+	
+	axios.delete(`/posts/${id}`)
+          .then(response=>{
+            console.log(response)
+          })
+	  
+	  
+	
