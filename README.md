@@ -222,7 +222,6 @@ if it not work try
 	----------------------------------------------------------------
 	for use in js file
 	import axios from '../axios';
-	-------------------------------------------------
 	//GET 
 	axios.get('/posts')
         .then(response=>{
