@@ -205,6 +205,17 @@ if it not work try
 	axios.defaults.baseURL = 'https://jsonplaceholder.ir'
 	axios.defaults.headers.post['Contetnt-Type'] = 'application/json';
 	
+	73-handling-errors-global
+	axios.interceptor.request.use(request=>{
+	return request;}
+	,error=>{
+	promise.reject(new error("fail"))})
+	
+	axios.interceptor.response.use(response=>{
+	return response;}
+	,error=>{
+	promise.reject(error)})
+	
 	for use in js file
 	import axios from '../axios';
 	
