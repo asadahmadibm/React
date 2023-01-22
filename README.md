@@ -204,8 +204,8 @@ if it not work try
 	add bae url & header to index.js
 	axios.defaults.baseURL = 'https://jsonplaceholder.ir'
 	axios.defaults.headers.post['Contetnt-Type'] = 'application/json';
-	
-	73-handling-errors-global
+	------------------------------------------------------------------
+	73-handling-errors-global add this lines to index.js
 	axios.interceptor.request.use(request=>{
 	return request;}
 	,error=>{
@@ -215,17 +215,18 @@ if it not work try
 	return response;}
 	,error=>{
 	promise.reject(error)})
-	
+	----------------------------------------------------------------
 	for use in js file
 	import axios from '../axios';
-	
+	-------------------------------------------------
+	//GET 
 	axios.get('/posts')
         .then(response=>{
           console.log(response.data);
         }).catch(error=>{
           console.log(error)
         });
-	
+	---------------------------------------------------
 	// POST request using axios with set headers & error handling
 	    const article = { title: 'React POST Request Example' };
 	    const headers = { 
@@ -238,7 +239,7 @@ if it not work try
 		    this.setState({ errorMessage: error.message });
 		    console.error('There was an error!', error);
 		});
-	
+	------------------------------------------------------
 	axios.delete(`/posts/${id}`)
           .then(response=>{
             console.log(response)
