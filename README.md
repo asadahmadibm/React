@@ -249,5 +249,12 @@ if it not work try
             console.log(response)
           })
 	  
+	  for use by differente url make js file :
+		import axios from 'axios';
+		const instance = axios.create({
+		    baseURL:'https://jsonplaceholder.ir'
+		})
+		instance.interceptor.request.use( ....
+		export default instance;
 	  
 	
