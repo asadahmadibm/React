@@ -204,6 +204,10 @@ if it not work try
 	add bae url & header to index.js
 	axios.defaults.baseURL = 'https://jsonplaceholder.ir'
 	axios.defaults.headers.post['Contetnt-Type'] = 'application/json';
+	axios.interceptors.request.use(function (config) {
+  		config.headers.Authorization =  "Bearer "+token;
+  		return config;
+	});
 	------------------------------------------------------------------
 	73-handling-errors-global add this lines to index.js
 	axios.interceptor.request.use(request=>{
