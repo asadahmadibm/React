@@ -230,7 +230,7 @@ if it not work try
         }).catch(error=>{
           console.log(error)
         });
-	---------------------------------------------------
+	
 	// POST request using axios with set headers & error handling
 	    const article = { title: 'React POST Request Example' };
 	    const headers = { 
@@ -243,12 +243,12 @@ if it not work try
 		    this.setState({ errorMessage: error.message });
 		    console.error('There was an error!', error);
 		});
-	------------------------------------------------------
+	
 	axios.delete(`/posts/${id}`)
           .then(response=>{
             console.log(response)
           })
-	  
+	--------------------------------------------------------------  
 	for use by differente url make js file :
 	import axios from 'axios';
 	const instance = axios.create({
