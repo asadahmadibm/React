@@ -200,7 +200,7 @@ if it not work try
 	import { AgGridReact } from 'ag-grid-react';
 	import 'ag-grid-community/styles/ag-grid.css';
 	import 'ag-grid-community/styles/ag-theme-alpine.css';
-	
+	Simple Example---------------------------------------
 	const App = () => {
 	   const [rowData] = useState([
 	       {make: "Toyota", model: "Celica", price: 35000},
@@ -209,17 +209,24 @@ if it not work try
 	   ]);
 
 	   const [columnDefs] = useState([
-	       { field: 'make' },
-	       { field: 'model' },
-	       { field: 'price' }
+	       { field: 'make', sortable: true ,headerName:"کد" , filter: 'agNumberColumnFilter' },
+	       { field: 'model',headerName:"نام لاتین", filter: 'agTextColumnFilter' },
+	       { field: 'price',headerName:"نام فارسی", filter: 'agTextColumnFilter' }
 	   ])
 
 	   return (
 	       <div className="ag-theme-alpine" style={{height: 400, width: 600}}>
-		   <AgGridReact
-		       rowData={rowData}
-		       columnDefs={columnDefs}>
-		   </AgGridReact>
+		   <AgGridReact 
+			pagination="true"
+			paginationPageSize="10"
+			className="ag-theme-alpine"
+			enableRtl="true"
+			headerHeight="30"
+			rowHeight="30"
+			enableRangeSelection="true"
+			rowData={rowData}
+			columnDefs={columnDefs}>
+		    </AgGridReact>
 	       </div>
 	   );
 	};
