@@ -8,6 +8,7 @@ import {
 
 import Home from './Home'
 import About from './About'
+import Currency from './Currency'
 import { Route, Routes ,useNavigate} from "react-router-dom";
 
 import { Layout, Menu, theme } from 'antd';
@@ -25,7 +26,10 @@ const MainLayout = () => {
             navigate("/Home")
         if (e.key === "2")
             navigate("/About")
-      };
+        if (e.key === "3")
+            navigate("/Currency")
+
+        };
     return (
         <Layout>
             <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -49,7 +53,7 @@ const MainLayout = () => {
                         {
                             key: '3',
                             icon: <UploadOutlined />,
-                            label: 'nav 3',
+                            label: 'لیست ارزها',
                         },
                     ]}
                 />
@@ -58,6 +62,7 @@ const MainLayout = () => {
                 <Header
                     style={{
                         padding: 0,
+                        height: 50,
                         background: colorBgContainer,
                     }}
                 >
@@ -68,8 +73,8 @@ const MainLayout = () => {
                 </Header>
                 <Content
                     style={{
-                        margin: '24px 16px',
-                        padding: 24,
+                        margin: '8px 8px',
+                        padding: '0 20px',
                         minHeight: 580,
                         background: colorBgContainer,
                     }}
@@ -77,6 +82,7 @@ const MainLayout = () => {
                     <Routes>
                         <Route exact path='/home' element={<Home />} />
                         <Route exact path='/About' element={<About />} />
+                        <Route exact path='/Currency' element={<Currency />} />
                     </Routes>
                 </Content>
             </Layout>

@@ -1,12 +1,37 @@
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: normal;
+  src: url('/src/fonts/iransans/eot/IRANSansWeb(FaNum).eot');
+  src: url('/src/fonts/iransans/eot/IRANSansWeb(FaNum).eot?#iefix') format('embedded-opentype'),
+      /* IE6-8 */
+      url('/src/fonts/iransans/woff2/IRANSansWeb(FaNum).woff2') format('woff2'),
+      /* FF39+,Chrome36+, Opera24+*/
+      url('/src/fonts/iransans/woff/IRANSansWeb(FaNum).woff') format('woff'),
+      /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url('/src/fonts/iransans/ttf/IRANSansWeb(FaNum).ttf') format('truetype');
+}
+
+:root {
+  --main-color-1: #07b7a6;
+  --main-color-2: #683896;
+  --main-fa-font: "IRANSans";
+  --iconsSizeInCollapsedMenu: 22;
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family:  "IRANSans" !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+h2 {
+  font-family:  "IRANSans" !important;
+}
 
+.ag-theme-alpine {
+  --ag-font-family: var(--main-fa-font) !important;
+  font-family: var(--main-fa-font) !important;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
