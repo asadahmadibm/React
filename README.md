@@ -217,6 +217,43 @@ if it not work try
 	   return (
 	       <div className="ag-theme-alpine" style={{height: 400, width: 600}}>
 		   <AgGridReact 
+			rowData={rowData}
+			columnDefs={columnDefs}>
+		    </AgGridReact>
+	       </div>
+	   );
+	};
+	service Example---------------------------------------
+	import react, { useState } from 'react'
+	import { useEffect } from 'react';
+	import axios from 'axios';
+	import { AgGridReact } from 'ag-grid-react';
+	import 'ag-grid-community/styles/ag-grid.css';
+	import 'ag-grid-community/styles/ag-theme-alpine.css';
+	const Currency = () => {
+	    const [rowData,setRowData] = useState('');
+
+	    const [columnDefs] = useState([
+		{ field: 'currencyId' , sortable: true ,headerName:"کد" , filter: 'agNumberColumnFilter'},
+		{ field: 'englishNm' ,headerName:"نام لاتین", filter: 'agTextColumnFilter'},
+		{ field: 'farsiNm' ,headerName:"نام فارسی", filter: 'agTextColumnFilter'}
+	    ])
+	    const [currencyDTO, setCurrencyDTO] = useState('');
+	    useEffect(() => {
+		console.log("loading");
+		axios.get("/Currency")
+		    .then(
+			response => {
+			    setCurrencyDTO(response.data.data.data)
+			    setRowData(response.data.data.data);
+			    console.log(response.data.data.data);
+			})
+	    }, []);
+
+	    return (
+		<div style={{height: 400, width: 600}}>
+		    <h2>لیست ارزها</h2>
+		    <AgGridReact 
 			pagination="true"
 			paginationPageSize="10"
 			className="ag-theme-alpine"
@@ -227,9 +264,13 @@ if it not work try
 			rowData={rowData}
 			columnDefs={columnDefs}>
 		    </AgGridReact>
-	       </div>
-	   );
-	};
+		</div>
+
+
+	    )
+	}
+	export default Currency
+	-----------------------------------------------------
 	
 # axios request to server
 
