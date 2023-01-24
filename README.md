@@ -234,9 +234,9 @@ if it not work try
 	    const [rowData,setRowData] = useState('');
 
 	    const [columnDefs] = useState([
-		{ field: 'currencyId' , sortable: true ,headerName:"کد" , filter: 'agNumberColumnFilter'},
-		{ field: 'englishNm' ,headerName:"نام لاتین", filter: 'agTextColumnFilter'},
-		{ field: 'farsiNm' ,headerName:"نام فارسی", filter: 'agTextColumnFilter'}
+		{ field: 'currencyId' , sortable: false ,headerName:"کد" , filter: 'agNumberColumnFilter',width: 120},
+		{ field: 'englishNm' ,headerName:"نام لاتین", filter: 'agTextColumnFilter',width: 120},
+		{ field: 'farsiNm' ,headerName:"نام فارسی", filter: 'agTextColumnFilter',width: 120}
 	    ])
 	    const [currencyDTO, setCurrencyDTO] = useState('');
 	    useEffect(() => {
@@ -254,6 +254,7 @@ if it not work try
 		<div style={{height: 400, width: 600}}>
 		    <h2>لیست ارزها</h2>
 		    <AgGridReact 
+		    	defaultColDef={{sortable: true, filter: true }}
 			pagination="true"
 			paginationPageSize="10"
 			className="ag-theme-alpine"
