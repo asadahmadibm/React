@@ -9,6 +9,8 @@ import {
 import Home from './Home'
 import About from './About'
 import Currency from './Currency'
+import AgGridPagination from './AgGridPagination'
+import AgGridPaginationNew from './AgGridPaginationNew';
 import { Route, Routes ,useNavigate} from "react-router-dom";
 
 import { Layout, Menu, theme } from 'antd';
@@ -28,7 +30,10 @@ const MainLayout = () => {
             navigate("/About")
         if (e.key === "3")
             navigate("/Currency")
-
+            if (e.key === "4")
+            navigate("/AgGridPagination")
+                        if (e.key === "5")
+            navigate("/AgGridPaginationNew")
         };
     return (
         <Layout>
@@ -54,6 +59,16 @@ const MainLayout = () => {
                             key: '3',
                             icon: <UploadOutlined />,
                             label: 'لیست ارزها',
+                        },
+                        {
+                            key: '4',
+                            icon: <UploadOutlined />,
+                            label: 'صفحه بندی گرید ',
+                        },
+                        {
+                            key: '5',
+                            icon: <UploadOutlined />,
+                            label: 'صفحه بندی گرید جدید ',
                         },
                     ]}
                 />
@@ -83,6 +98,8 @@ const MainLayout = () => {
                         <Route exact path='/home' element={<Home />} />
                         <Route exact path='/About' element={<About />} />
                         <Route exact path='/Currency' element={<Currency />} />
+                        <Route exact path='/AgGridPagination' element={<AgGridPagination />} />
+                        <Route exact path='/AgGridPaginationNew' element={<AgGridPaginationNew />} />
                     </Routes>
                 </Content>
             </Layout>
