@@ -13,6 +13,7 @@ import Report from './Sana2/Sana/Report'
 import SarafiManagment from './Sana2/Sana/sarafi/SarafiManagment';
 import { Route, Routes, useNavigate } from "react-router-dom";
 import AgGridPagination from './AgGridPagination'
+import RialiPaymentReport from './Sana2/Sana/RialiPaymentReport';
 
 
 import { Layout, Menu, theme } from 'antd';
@@ -38,7 +39,11 @@ const MainLayout = () => {
             navigate("/SarafiManagment")
         if (e.key === "6")
             navigate("/AgGridPagination")
+        if (e.key === "7")
+            navigate("/RialiPaymentReport")
         };
+
+        
     return (
         <Layout>
             <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -83,6 +88,13 @@ const MainLayout = () => {
                             label: 'صفحه بندی گرید  ',
 
                         },
+                        {
+                            key: '7',
+                            icon: <UploadOutlined />,
+
+                            label: 'گزارش از پرداختهای ریالی ',
+
+                        },
                     ]}
                 />
             </Sider>
@@ -114,6 +126,8 @@ const MainLayout = () => {
                         <Route exact path='/Report' element={<Report />} />
                         <Route exact path='/SarafiManagment' element={<SarafiManagment />} />
                         <Route exact path='/AgGridPagination' element={<AgGridPagination />} />
+                        <Route exact path='/RialiPaymentReport' element={<RialiPaymentReport />} />
+                        
                     </Routes>
                 </Content>
             </Layout>
