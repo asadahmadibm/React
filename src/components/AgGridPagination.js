@@ -26,21 +26,11 @@ const AgGridPagination = () => {
         if (gridApi) {
             const dataSource = {
                 getRows: (params) => {
-                    // Use startRow and endRow for sending pagination to Backend
-                    // params.startRow : Start Page
-                    // params.endRow : End Page
-
+                    console.log(params);
                     const page = params.endRow / perPage;
-                    // fetch(`https://reqres.in/api/users?per_page=${perPage}&page=${page}`)
-                    //   .then(resp => resp.json())
-                    //   .then(res => {
-                    //     params.successCallback(res.data, res.total);
-                    //   }).catch(err => {
-                    //     params.successCallback([], 0);
-                    //   });
                     axios.get(`https://reqres.in/api/users?per_page=${perPage}&page=${page}`)
                         .then(res => {
-                            console.log(res);
+                            // console.log(res);
                             params.successCallback(res.data.data, res.total);
                         }).catch(err => {
                             params.successCallback([], 0);

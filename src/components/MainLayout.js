@@ -13,8 +13,7 @@ import Report from './Sana2/Sana/Report'
 import SarafiManagment from './Sana2/Sana/sarafi/SarafiManagment';
 import { Route, Routes, useNavigate } from "react-router-dom";
 import AgGridPagination from './AgGridPagination'
-import AgGridPaginationNew from './AgGridPaginationNew';
-import { Route, Routes ,useNavigate} from "react-router-dom";
+
 
 import { Layout, Menu, theme } from 'antd';
 import React, { useState } from 'react';
@@ -37,10 +36,8 @@ const MainLayout = () => {
             navigate("/Report")
         if (e.key === "5")
             navigate("/SarafiManagment")
-        if (e.key === "5")
-            navigate("/AgGridPagination")
         if (e.key === "6")
-            navigate("/AgGridPaginationNew")
+            navigate("/AgGridPagination")
         };
     return (
         <Layout>
@@ -70,21 +67,20 @@ const MainLayout = () => {
                         {
                             key: '4',
                             icon: <UploadOutlined />,
-                            label: ' صرافی ها',
+                            label: ' گزارش ',
 
                         },
                         {
                             key: '5',
                             icon: <UploadOutlined />,
-
-                            label: 'صفحه بندی گرید  ',
+                            label: ' صرافی ها',
 
                         },
                         {
                             key: '6',
                             icon: <UploadOutlined />,
 
-                            label: 'صفحه بندی گرید جدید ',
+                            label: 'صفحه بندی گرید  ',
 
                         },
                     ]}
@@ -118,7 +114,6 @@ const MainLayout = () => {
                         <Route exact path='/Report' element={<Report />} />
                         <Route exact path='/SarafiManagment' element={<SarafiManagment />} />
                         <Route exact path='/AgGridPagination' element={<AgGridPagination />} />
-                        <Route exact path='/AgGridPaginationNew' element={<AgGridPaginationNew />} />
                     </Routes>
                 </Content>
             </Layout>
