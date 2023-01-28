@@ -1,0 +1,38 @@
+.action-btn {
+    color: #7f8c8d;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+.action-btn:hover:not(:disabled) {
+    color: #fff;
+    background-color: #0d6efd;
+}
+
+.text-13 {
+    font-size: 14px;
+}
+
+.item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item:not(:last-child) {
+    padding-left: 2px;
+}
+
+.input {
+    width: 50px;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

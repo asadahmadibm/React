@@ -9,7 +9,9 @@ import {
 import Home from './Home'
 import About from './About'
 import Currency from './Currency'
-import { Route, Routes ,useNavigate} from "react-router-dom";
+import Report from './Sana2/Sana/Report'
+import SarafiManagment from './Sana2/Sana/sarafi/SarafiManagment';
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 import { Layout, Menu, theme } from 'antd';
 import React, { useState } from 'react';
@@ -28,8 +30,11 @@ const MainLayout = () => {
             navigate("/About")
         if (e.key === "3")
             navigate("/Currency")
-
-        };
+        if (e.key === "4")
+            navigate("/Report")
+        if (e.key === "5")
+            navigate("/SarafiManagment")
+    };
     return (
         <Layout>
             <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -43,7 +48,7 @@ const MainLayout = () => {
                             key: '1',
                             icon: <UserOutlined />,
                             label: 'nav 1',
-                            
+
                         },
                         {
                             key: '2',
@@ -54,6 +59,16 @@ const MainLayout = () => {
                             key: '3',
                             icon: <UploadOutlined />,
                             label: 'لیست ارزها',
+                        },
+                        {
+                            key: '4',
+                            icon: <UploadOutlined />,
+                            label: ' گزارش',
+                        },
+                        {
+                            key: '5',
+                            icon: <UploadOutlined />,
+                            label: ' صرافی ها',
                         },
                     ]}
                 />
@@ -83,6 +98,9 @@ const MainLayout = () => {
                         <Route exact path='/home' element={<Home />} />
                         <Route exact path='/About' element={<About />} />
                         <Route exact path='/Currency' element={<Currency />} />
+                        <Route exact path='/Report' element={<Report />} />
+                        <Route exact path='/SarafiManagment' element={<SarafiManagment />} />
+
                     </Routes>
                 </Content>
             </Layout>
