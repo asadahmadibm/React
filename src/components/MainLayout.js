@@ -12,6 +12,9 @@ import Currency from './Currency'
 import Report from './Sana2/Sana/Report'
 import SarafiManagment from './Sana2/Sana/sarafi/SarafiManagment';
 import { Route, Routes, useNavigate } from "react-router-dom";
+import AgGridPagination from './AgGridPagination'
+import AgGridPaginationNew from './AgGridPaginationNew';
+import { Route, Routes ,useNavigate} from "react-router-dom";
 
 import { Layout, Menu, theme } from 'antd';
 import React, { useState } from 'react';
@@ -34,7 +37,11 @@ const MainLayout = () => {
             navigate("/Report")
         if (e.key === "5")
             navigate("/SarafiManagment")
-    };
+        if (e.key === "5")
+            navigate("/AgGridPagination")
+        if (e.key === "6")
+            navigate("/AgGridPaginationNew")
+        };
     return (
         <Layout>
             <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -63,12 +70,22 @@ const MainLayout = () => {
                         {
                             key: '4',
                             icon: <UploadOutlined />,
-                            label: ' گزارش',
+                            label: ' صرافی ها',
+
                         },
                         {
                             key: '5',
                             icon: <UploadOutlined />,
-                            label: ' صرافی ها',
+
+                            label: 'صفحه بندی گرید  ',
+
+                        },
+                        {
+                            key: '6',
+                            icon: <UploadOutlined />,
+
+                            label: 'صفحه بندی گرید جدید ',
+
                         },
                     ]}
                 />
@@ -100,7 +117,8 @@ const MainLayout = () => {
                         <Route exact path='/Currency' element={<Currency />} />
                         <Route exact path='/Report' element={<Report />} />
                         <Route exact path='/SarafiManagment' element={<SarafiManagment />} />
-
+                        <Route exact path='/AgGridPagination' element={<AgGridPagination />} />
+                        <Route exact path='/AgGridPaginationNew' element={<AgGridPaginationNew />} />
                     </Routes>
                 </Content>
             </Layout>
