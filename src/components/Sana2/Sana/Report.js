@@ -8,7 +8,251 @@ import Pagination from '../../Pagination';
 import { Alert } from 'antd';
 import '../../Pagination.css'
 import 'ag-grid-enterprise';
+//import AG_GRID_LOCALE_FA from '../../Aggrid/Local.fa';
 const Report = () => {
+	const localeText = useMemo(() => {
+        return {
+            "selectAll": "(انتخاب همه)",
+            "selectAllSearchResults": "(انتخاب همه نتایج جستجو)",
+            "searchOoo": "جستجو ...",
+            "blanks": "(خالی)",
+            "blank": "خالی",
+            "notBlank": "خالی نیست",
+            "noMatches": "مطابقتی ندارد",
+            "filterOoo": "فیلتر ...",
+            "equals": "برابر با",
+            "notEqual": "برابر نیست با",
+            "empty": "انتخاب یکی",
+            "lessThan": "کوچکتر از",
+            "greaterThan": "بزرگتر از",
+            "lessThanOrEqual": "کوچکتر یا مساوی با",
+            "greaterThanOrEqual": "بزرگتر یا مساوی با",
+            "inRange": "در محدوده",
+            "inRangeStart": "از",
+            "inRangeEnd": "تا",
+            "contains": "شامل",
+            "notContains": "شامل نمی شود",
+            "startsWith": "شروع می شود با",
+            "endsWith": "به پایان می رسد با",
+            "dateFormatOoo": "yyyy-mm-dd",
+            "andCondition": "و",
+            "orCondition": "یا",
+            "applyFilter": "اعمال",
+            "resetFilter": "تنظیم مجدد",
+            "clearFilter": "پاک کردن",
+            "cancelFilter": "لغو",
+            "textFilter": "فیلتر متن",
+            "numberFilter": "فیلتر عدد",
+            "dateFilter": "فیلتر تاریخ",
+            "setFilter": "تنظیم فیلتر",
+            "columns": "ستون‌ها",
+            "filters": "فیلترها",
+            "pivotMode": "حالت محوری",
+            "groups": "گروه‌های ردیف",
+            "rowGroupColumnsEmptyMessage": "برای تنظیم گروه های ردیف اینجا را بکشید",
+            "values": "مقادیر",
+            "valueColumnsEmptyMessage": "برای جمع آوری اینجا را بکشید",
+            "pivots": "برچسب‌های ستون",
+            "pivotColumnsEmptyMessage": "برای تنظیم برچسب های ستون، اینجا را بکشید",
+            "group": "گروه",
+            "loadingOoo": "در حال بارگذاری داده‌ها ...",
+            "noRowsToShow": "محتوایی برای نمایش وجود ندارد",
+            "enabled": "فعال شد",
+            "pinColumn": "سنجاق ستون",
+            "pinLeft": "سنجاق سمت  چپ",
+            "pinRight": "سنجاق سمت راست",
+            "noPin": "بدون سنجاق",
+            "valueAggregation": "جمع مقادیر",
+            "autosizeThiscolumn": "اندازه خودکار این ستون",
+            "autosizeAllColumns": "اندازه خودکار همه ستون‌ها",
+            "groupBy": "دسته‌بندی براساس",
+            "ungroupBy": "لغو گروه‌بندی توسط",
+            "resetColumns": "تنظیم مجدد ستون‌ها",
+            "expandAll": "باز کردن همه",
+            "collapseAll": "بستن همه",
+            "copy": "کپی",
+            "ctrlC": "Ctrl+C",
+            "copyWithHeaders": "کپی با هدر",
+            "paste": "پیست",
+            "ctrlV": "Ctrl+V",
+            "export": "خروجی",
+            "csvExport": "خروجی CSV",
+            "excelExport": "خروجی Excel",
+            "sum": "جمع",
+            "min": "کمترین",
+            "max": "بیشترین",
+            "none": "هیچ یک",
+            "count": "تعداد",
+            "avg": "میانگین",
+            "filteredRows": "فیلتر شده",
+            "selectedRows": "انتخاب شده",
+            "totalRows": "تعداد ردیف‌ها",
+            "totalAndFilteredRows": "ردیف‌ها",
+            "more": "بیشتر",
+            "to": "تا",
+            "of": "از",
+            "page": "صفحه",
+            "nextPage": "صفحه بعدی",
+            "lastPage": "آخرین صفحه",
+            "firstPage": "اولین صفحه",
+            "previousPage": "صفحه قبلی",
+            "pivotColumnGroupTotals": "جمع",
+            "pivotChartAndPivotMode": "نمودار محوری و حالت محوری",
+            "pivotChart": "نمودار محوری",
+            "chartRange": "نمودار این محدوده",
+            "columnChart": "ستونی",
+            "groupedColumn": "گروه بندی شده",
+            "stackedColumn": "انباشته شده",
+            "normalizedColumn": "۱۰۰٪ انباشته شده",
+            "barChart": "نمودار میله‌ای",
+            "groupedBar": "گروه بندی شده",
+            "stackedBar": "انباشته شده",
+            "normalizedBar": "۱۰۰٪ انباشته شده",
+            "pieChart": "نمودار دایره‌ای",
+            "pie": "نمودار دایره‌ای",
+            "doughnut": "نمودار دونات",
+            "line": "نمودار خطی",
+            "xyChart": "X Y (پراکنده)",
+            "scatter": "پراکنده کردن",
+            "bubble": "حباب",
+            "areaChart": "منطقه",
+            "area": "منطقه",
+            "stackedArea": "انباشته شده",
+            "normalizedArea": "۱۰۰٪ انباشته شده",
+            "histogramChart": "هیستوگرام",
+            "pivotChartTitle": "نمودار محوری",
+            "rangeChartTitle": "نمودار محدوده",
+            "settings": "تنظیمات",
+            "data": "داده",
+            "format": "فرمت",
+            "categories": "دسته‌بندی‌ها",
+            "defaultCategory": "(خالی)",
+            "series": "سری",
+            "xyValues": "مقادیر X Y",
+            "paired": "حالت جفت شده",
+            "axis": "محور",
+            "navigator": "ناوبر",
+            "color": "رنگ",
+            "thickness": "ضخامت",
+            "xType": "نوع X",
+            "automatic": "خودکار",
+            "category": "دسته‌بندی",
+            "number": "عدد",
+            "time": "زمان",
+            "xRotation": "X چرخش محور",
+            "yRotation": "Y چرخش محور",
+            "ticks": "کنه‌ها",
+            "width": "عرض",
+            "height": "ارتفاع",
+            "length": "طول",
+            "padding": "فاصله درونی",
+            "spacing": "فاصله گذاری",
+            "chart": "نمودار",
+            "title": "عنوان",
+            "titlePlaceholder": "عنوان نمودار - برای ویرایش دوبار کلیک کنید",
+            "background": "پس‌زمینه",
+            "font": "فونت",
+            "top": "بالا",
+            "right": "راست",
+            "bottom": "پایین",
+            "left": "چپ",
+            "labels": "عنوان",
+            "size": "سایز",
+            "minSize": "حداقل اندازه",
+            "maxSize": "حداکثر اندازه",
+            "legend": "افسانه",
+            "position": "موقعیت",
+            "markerSize": "اندازه نشانگر",
+            "markerStroke": "نشانگر سکته",
+            "markerPadding": "فاصله درونی نشانگر",
+            "itemSpacing": "فاصله مورد",
+            "itemPaddingX": "فاصله درونی عرضی",
+            "itemPaddingY": "فاصلی درونی افقی",
+            "layoutHorizontalSpacing": "فاصله افقی",
+            "layoutVerticalSpacing": "فاصله عمودی",
+            "strokeWidth": "عرض ضربه",
+            "offset": "انحراف",
+            "offsets": "انحراف‌ها",
+            "tooltips": "عنوان کمکی",
+            "callout": "فراخوانی",
+            "markers": "نشانگرها",
+            "shadow": "سایه",
+            "blur": "تاری",
+            "xOffset": "انحراف عرضی",
+            "yOffset": "انحراف افقی",
+            "lineWidth": "عرض خط",
+            "normal": "معمولی",
+            "bold": "پررنگ",
+            "italic": "کج",
+            "boldItalic": "پررنگ و کج",
+            "predefined": "از پیش تعریف شده",
+            "fillOpacity": "پر کردن شفافیت",
+            "strokeOpacity": "شفافیت خط",
+            "histogramBinCount": "سطل شمارش",
+            "columnGroup": "ستون",
+            "barGroup": "میله‌ای",
+            "pieGroup": "دایره‌ای",
+            "lineGroup": "خطی",
+            "scatterGroup": "X Y (پراکنده)",
+            "areaGroup": "منطقه",
+            "histogramGroup": "هیستوگرام",
+            "groupedColumnTooltip": "گروه‌بندی شده",
+            "stackedColumnTooltip": "انباشه شده",
+            "normalizedColumnTooltip": "۱۰۰٪ انباشته شده",
+            "groupedBarTooltip": "گروه‌بندی شده",
+            "stackedBarTooltip": "انباشته شده",
+            "normalizedBarTooltip": "۱۰۰٪ انباشته شده",
+            "pieTooltip": "دایره‌ای",
+            "doughnutTooltip": "دونات",
+            "lineTooltip": "خطی",
+            "groupedAreaTooltip": "منطقه",
+            "stackedAreaTooltip": "انباشته شده",
+            "normalizedAreaTooltip": "۱۰۰٪ انباشته شده",
+            "scatterTooltip": "پراکنده کردن",
+            "bubbleTooltip": "حباب",
+            "histogramTooltip": "هیستوگرام",
+            "noDataToChart": "هیچ داده ای برای ترسیم نمودار موجود نیست.",
+            "pivotChartRequiresPivotMode": "نمودار محوری باید حالت محوری فعال باشد.",
+            "chartSettingsToolbarTooltip": "منو",
+            "chartLinkToolbarTooltip": "متصل کردن به جدول",
+            "chartUnlinkToolbarTooltip": "لغو اتصال به جدول",
+            "chartDownloadToolbarTooltip": "دانلود نمودار",
+            "ariaHidden": "مخفی",
+            "ariaVisible": "قابل رویت",
+            "ariaChecked": "بررسی شده",
+            "ariaUnchecked": "بررسی نشده",
+            "ariaIndeterminate": "نامشخص",
+            "ariaDefaultListName": "لیست",
+            "ariaColumnSelectAll": "گزینه انتخاب همه ستون‌ها را تغییر دهید",
+            "ariaInputEditor": "ویرایشگر ورودی",
+            "ariaDateFilterInput": "ورودی فیلتر تاریخ",
+            "ariaFilterList": "لیست فیلتر",
+            "ariaFilterInput": "ورودی فیلتر",
+            "ariaFilterColumnsInput": "فیلتر ورودی ستون‌ها",
+            "ariaFilterValue": "فیلتر مقادیر",
+            "ariaFilterFromValue": "فیلتر از مقدار",
+            "ariaFilterToValue": "فیلتر تا مقدار",
+            "ariaFilteringOperator": "عملیات فیلترینگ",
+            "ariaColumn": "ستون",
+            "ariaColumnList": "لیست ستون",
+            "ariaColumnGroup": "گروه ستون",
+            "ariaRowSelect": "برای انتخاب این ردیف، SPACE را فشار دهید",
+            "ariaRowDeselect": "برای لغو انتخاب این ردیف، SPACE را فشار دهید",
+            "ariaRowToggleSelection": "برای تغییر وضعیت انتخاب ردیف، Space را فشار دهید",
+            "ariaRowSelectAll": "Space را فشار دهید تا انتخاب همه ردیف‌ها تغییر کند",
+            "ariaToggleVisibility": "برای تغییر حالت دید، SPACE را فشار دهید",
+            "ariaSearch": "جستجو",
+            "ariaSearchFilterValues": "جستجوی مقادیر فیلتر",
+            "ariaLabelColumnMenu": "منو ستون",
+            "ariaLabelCellEditor": "ویرایشگر سلول",
+            "ariaLabelDialog": "گفتگو",
+            "ariaLabelSelectField": "انتخب فیلد",
+            "ariaLabelTooltip": "عنوان کمکی",
+            "ariaLabelContextMenu": "منوی زمینه",
+            "ariaLabelSubMenu": "زیر منو",
+            "ariaLabelAggregationFunction": "تابع جمع"
+};
+      }, []);
 	// const [pageindex, setPageindex] = useState(1);
 	// const [totalRows, setTotalRows] = useState(0);
 	const [columnDefs] = useState([
@@ -40,17 +284,6 @@ const Report = () => {
 		setGridApi(params.api);
 	};
 
-	// useEffect(() => {
-	// 	console.log("loading");
-	// 	axios.post("/ReportList", serverRowsRequest)
-	// 		.then(
-	// 			response => {
-	// 				console.log(response.data.data.list);
-	// 				setRowData(response.data.data.list);
-	// 				setTotalRows(response.data.data.totalCount)
-
-	// 			})
-	// }, []);
 	useEffect(() => {
 		if (gridApi) {
 			const dataSource = {
@@ -119,49 +352,14 @@ const Report = () => {
 				headerHeight="30"
 				rowHeight="30"
 				enableRangeSelection="true"
+				localeText={localeText}
 				// defaultColDef={{ flex: 1 }}
 				// sortChanged={onSortChanged}
 				columnDefs={columnDefs}
-			// rowModelType={'serverSide'}
-
 			>
-
 			</AgGridReact>
-			{/* <nav className="d-flex flex-column-reverse flex-md-row justify-content-between px-2 py-1" aria-label="Page navigation">
-				<ul class="pagination pagination-sm d-flex justify-content-center justify-content-md-end flex-wrap list-unstyled mb-0">
-					<li class="item">
-						<button onClick={firstpage} className="action-btn">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-right" viewBox="0 0 16 16">
-								<path fill-rule="evenodd" d="M4.146 3.646a.5.5 0 0 0 0 .708L7.793 8l-3.647 3.646a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708 0zM11.5 1a.5.5 0 0 1 .5.5v13a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 .5-.5z" />
-							</svg>
-						</button>
-					</li>
-					<li class="item">
-						<button onClick={prevpage} className="action-btn">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-								<path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-							</svg>
-						</button>
-					</li>
-					<li class="item">
-						<button onClick={nextpage} className="action-btn">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-								<path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-							</svg>
-						</button>
-					</li>
-					<li class="item">
-						<button onClick={lastpage} className="action-btn">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-bar-left" viewBox="0 0 16 16">
-								<path fill-rule="evenodd" d="M11.854 3.646a.5.5 0 0 1 0 .708L8.207 8l3.647 3.646a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 0 1 .708 0zM4.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 1 0v-13a.5.5 0 0 0-.5-.5z" />
-							</svg>
-						</button>
-					</li>
-				</ul>
-			</nav> */}
-			{/* <Pagination firstpage={firstpage} nextpage={nextpage} prevpage={prevpage} lastpage={lastpage} /> */}
-		</div>
 
+		</div>
 
 	)
 }

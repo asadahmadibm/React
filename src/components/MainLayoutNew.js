@@ -18,8 +18,26 @@ import RialiPaymentReport from './Sana2/Sana/RialiPaymentReport';
 
 import { Layout, Menu, theme } from 'antd';
 import React, { useState } from 'react';
+import NimaRequest from './nima/NimaRequest';
 const { Header, Sider, Content } = Layout;
-const MainLayout = () => {
+function getItem(label, key, icon, children) {
+    return {
+      key,
+      icon,
+      children,
+      label,
+    };
+  }
+  const items = [
+    // getItem('Option 1', '1'),
+    getItem('سنا', 'sub1', "", [
+      getItem('لیست ارزها', '3'),
+      getItem(' گزارش آماری ', '4'),
+      getItem('گزارش از پرداختهای ریالی ', '7'),
+    ]),
+    getItem('نیما', 'sub2', "", [getItem('درحواستهای فعال', '6')]),
+  ];
+const MainLayoutNew = () => {
     const navigate = useNavigate();
     const [collapsed, setCollapsed] = useState(false);
     const {
@@ -38,7 +56,7 @@ const MainLayout = () => {
         if (e.key === "5")
             navigate("/SarafiManagment")
         if (e.key === "6")
-            navigate("/AgGridPagination")
+            navigate("/NimaRequest")
         if (e.key === "7")
             navigate("/RialiPaymentReport")
         };
@@ -52,50 +70,7 @@ const MainLayout = () => {
                     theme="dark"
                     mode="inline"
                     defaultSelectedKeys={['1']}
-                    items={[
-                        // {
-                        //     key: '1',
-                        //     icon: <UserOutlined />,
-                        //     label: 'nav 1',
-
-                        // },
-                        // {
-                        //     key: '2',
-                        //     icon: <VideoCameraOutlined />,
-                        //     label: 'nav 2',
-                        // },
-                        {
-                            key: '3',
-                            icon: <UploadOutlined />,
-                            label: 'لیست ارزها',
-                        },
-                        {
-                            key: '4',
-                            icon: <UploadOutlined />,
-                            label: ' گزارش ',
-
-                        },
-                        // {
-                        //     key: '5',
-                        //     icon: <UploadOutlined />,
-                        //     label: ' صرافی ها',
-
-                        // },
-                        // {
-                        //     key: '6',
-                        //     icon: <UploadOutlined />,
-
-                        //     label: 'صفحه بندی گرید  ',
-
-                        // },
-                        {
-                            key: '7',
-                            icon: <UploadOutlined />,
-
-                            label: 'گزارش از پرداختهای ریالی ',
-
-                        },
-                    ]}
+                    items={items}
                 />
             </Sider>
             <Layout className="site-layout">
@@ -127,6 +102,8 @@ const MainLayout = () => {
                         <Route exact path='/SarafiManagment' element={<SarafiManagment />} />
                         <Route exact path='/AgGridPagination' element={<AgGridPagination />} />
                         <Route exact path='/RialiPaymentReport' element={<RialiPaymentReport />} />
+                        <Route exact path='/NimaRequest' element={<NimaRequest />} />
+
                         
                     </Routes>
                 </Content>
@@ -134,4 +111,4 @@ const MainLayout = () => {
         </Layout>
     );
 };
-export default MainLayout;
+export default MainLayoutNew;
