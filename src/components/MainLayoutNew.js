@@ -65,7 +65,7 @@ const MainLayoutNew = () => {
 
     return (
         <Layout>
-            <Sider trigger={null} collapsible collapsed={collapsed}>
+            <Sider trigger={null} collapsible collapsed={collapsed}> 
                 <div className='logo'></div>
                 <Menu onClick={onClick}
                     theme="dark"

@@ -38,7 +38,7 @@ code {
 }
 
 .trigger {
-  padding: 0 24px;
+  padding: 0 10px;
   font-size: 18px;
   line-height: 64px;
   cursor: pointer;
@@ -53,4 +53,9 @@ code {
   height: 32px;
   margin: 16px;
   background: rgba(255, 255, 255, 0.3);
+}
+
+
+.ant-layout-sider  {
+  min-width: 220px !important;
 }

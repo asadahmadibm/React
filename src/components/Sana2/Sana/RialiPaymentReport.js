@@ -275,7 +275,7 @@ const RialiPaymentReport = () => {
         { field: 'amountPayment', sortable: true, headerName: " مبلغ تراکنش ریالی  ", filter: 'agNumberColumnFilter', width: 180, valueFormatter: params => Number(params.value).toLocaleString() },
         { field: 'bankName', sortable: true, headerName: "بانک صرافی   ", filter: 'agTextColumnFilter', width: 150 },
         {
-            field: 'paymentDate', sortable: true, headerName: " تاريخ دریافت/پرداخت", filter: 'agTextColumnFilter', width: 200,
+            field: 'paymentDate', sortable: true, headerName: " تاريخ دریافت/پرداخت", filter: 'agNumberColumnFilter', width: 200,
             valueFormatter: params => moment(new Date(params.value).toLocaleDateString('en-US'), 'MM/DD/YYYY').isValid() == true ? moment(new Date(params.value).toLocaleDateString('en-US'), 'MM/DD/YYYY').locale('fa').format('YYYY/MM/DD') : "1111"
         },
         {
@@ -365,7 +365,13 @@ const RialiPaymentReport = () => {
                                     filterObject.Condition1.filter = filterObject.Condition1.filter.toString();
                                 }
                                 if (filteredFields[filteredField].operator) filterObject.FilterOperator = filteredFields[filteredField].operator;
-                                if (filteredFields[filteredField].condition2) filterObject.Condition2 = filteredFields[filteredField].condition2;
+                                if (filteredFields[filteredField].condition2) {
+                                    filterObject.Condition2 = filteredFields[filteredField].condition2;
+                                    if (filterObject.Condition2.filterType != "set") {
+                                        filterObject.Condition2.filter = filterObject.Condition2.filter.toString();
+                                    }
+    
+                                }
                             } else {
                                 filterObject = {
                                     Field: filteredField,
