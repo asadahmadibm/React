@@ -343,6 +343,11 @@ const RialiPaymentReport = () => {
             resizable: true,
         };
     }, []);
+    const statusBar = useMemo(() => {
+        return {
+          statusPanels: [{ statusPanel: 'agAggregationComponent' }],
+        };
+      }, []);
     useEffect(() => {
         if (gridApi) {
             
@@ -392,16 +397,16 @@ const RialiPaymentReport = () => {
                     });
 
                     const page = params.endRow / perPage;
-                    console.log(serverRowsRequest);
+                  
                     axios.post("/RialiPaymentReport", serverRowsRequest)
                         .then(res => {
+                            
                             params.successCallback(res.data.data.list, res.data.data.totalCount);
+                            
                         }).catch(err => {
                             params.successCallback([], 0);
                         }).finally(() => {
                          });
-
-
                 }
             }
 
@@ -426,7 +431,6 @@ const RialiPaymentReport = () => {
                 enableRangeSelection="true"
                 localeText={localeText}
                 defaultColDef={defaultColDef}
-                // sortChanged={onSortChanged}
                 columnDefs={columnDefs}
             >
             </AgGridReact>
