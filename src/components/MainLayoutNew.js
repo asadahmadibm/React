@@ -15,6 +15,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import AgGridPagination from './AgGridPagination'
 import RialiPaymentReport from './Sana2/Sana/RialiPaymentReport';
 
+import '../index.css'
 
 import { Layout, Menu, theme } from 'antd';
 import React, { useState } from 'react';
@@ -22,21 +23,21 @@ import NimaRequest from './nima/NimaRequest';
 const { Header, Sider, Content } = Layout;
 function getItem(label, key, icon, children) {
     return {
-      key,
-      icon,
-      children,
-      label,
+        key,
+        icon,
+        children,
+        label,
     };
-  }
-  const items = [
+}
+const items = [
     // getItem('Option 1', '1'),
     getItem('سنا', 'sub1', "", [
-      getItem('لیست ارزها', '3'),
-      getItem(' گزارش آماری ', '4'),
-      getItem('گزارش از پرداختهای ریالی ', '7'),
+        getItem('لیست ارزها', '3'),
+        getItem(' گزارش آماری ', '4'),
+        getItem('گزارش از پرداختهای ریالی ', '7'),
     ]),
     getItem('نیما', 'sub2', "", [getItem('درحواستهای فعال', '6')]),
-  ];
+];
 const MainLayoutNew = () => {
     const navigate = useNavigate();
     const [collapsed, setCollapsed] = useState(false);
@@ -59,13 +60,13 @@ const MainLayoutNew = () => {
             navigate("/NimaRequest")
         if (e.key === "7")
             navigate("/RialiPaymentReport")
-        };
+    };
 
-        
+
     return (
         <Layout>
             <Sider trigger={null} collapsible collapsed={collapsed}>
-                <div className="logo" />
+                <div className='logo'></div>
                 <Menu onClick={onClick}
                     theme="dark"
                     mode="inline"
@@ -89,7 +90,7 @@ const MainLayoutNew = () => {
                 <Content
                     style={{
                         margin: '8px 8px',
-                        padding: '0 20px',
+                        padding: '15px 20px',
                         minHeight: 650,
                         background: colorBgContainer,
                     }}
@@ -104,7 +105,7 @@ const MainLayoutNew = () => {
                         <Route exact path='/RialiPaymentReport' element={<RialiPaymentReport />} />
                         <Route exact path='/NimaRequest' element={<NimaRequest />} />
 
-                        
+
                     </Routes>
                 </Content>
             </Layout>

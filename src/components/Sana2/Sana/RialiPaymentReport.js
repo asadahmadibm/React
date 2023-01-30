@@ -13,11 +13,6 @@ import '../../spinner.css'
 import moment from 'jalali-moment';
 
 const RialiPaymentReport = () => {
-    const gridRef = useRef();
-    const handleFilter=()=> {
-
-        console.log(gridRef.current.api.getFilterModel());
-      };
     const localeText = useMemo(() => {
         return {
             "selectAll": "(انتخاب همه)",
@@ -261,10 +256,9 @@ const RialiPaymentReport = () => {
             "ariaLabelAggregationFunction": "تابع جمع"
         };
     }, []);
-    // const [pageindex, setPageindex] = useState(1);
-    // const [totalRows, setTotalRows] = useState(0);
-    const [paymentMethod] = useState([{ indexField: "1", valueField: "نقدی(حساب صندوق)" }, { indexField: "2", valueField: "حساب بانکی" }]);
-    const [paymentType] = useState([{ indexField: "1", valueField: "ساتنا " }, { indexField: "2", valueField: "پايا" }, { indexField: "3", valueField: "انتقال درون بانکی" }, { indexField: "4", valueField: "کارت به کارت" }, { indexField: "5", valueField: "چک" }, { indexField: "6", valueField: "واریز به حساب" }, { indexField: "7", valueField: "POS" }]);
+
+    const [paymentMethod] = useState([{ indexField: 1, valueField: "نقدی(حساب صندوق)" }, { indexField: 2, valueField: "حساب بانکی" }]);
+    const [paymentType] = useState([{ indexField: 1, valueField: "ساتنا " }, { indexField: 2, valueField: "پايا" }, { indexField: 3, valueField: "انتقال درون بانکی" }, { indexField: 4, valueField: "کارت به کارت" }, { indexField: 5, valueField: "چک" }, { indexField: 6, valueField: "واریز به حساب" }, { indexField: 7, valueField: "POS" }]);
     const [paymentValidity] = useState([{ indexField: 0, valueField: "نامشخص " }, { indexField: 1, valueField: "بررسی نشده" }, { indexField: 2, valueField: "تایید نشده" }, { indexField: 3, valueField: "تایید شده" }]);
     const [paymentStatus] = useState([{ indexField: 1, valueField: "بررسی نشده" }, { indexField: 2, valueField: "عدم تطابق" }, { indexField: 3, valueField: "تطبیق شده" }]);
     const getEnumValue = (code, formattingInfo) => {
@@ -272,18 +266,13 @@ const RialiPaymentReport = () => {
         if (!foundItem) return;
         return foundItem.valueField;
     }
-    const getEnumIndex = (value, formattingInfo) => {
-        let foundItem = formattingInfo.find(({ valueField }) => valueField === value);
-        if (!foundItem) return;
-        return foundItem.indexField;
-    }
     const [columnDefs] = useState([
-        { field: 'sarafiId', sortable: true, headerName: "کد صرافی", filter: 'agNumberColumnFilter', width: 128 },
-        { field: 'trackingCode', sortable: true, headerName: "شماره پيگيری ", filter: 'agTextColumnFilter', width: 128 },
+        { field: 'sarafiId', sortable: true, headerName: "کد صرافی", filter: 'agNumberColumnFilter', width: 120 },
+        { field: 'trackingCode', sortable: true, headerName: "شماره پيگيری ", filter: 'agTextColumnFilter', width: 150 },
         { field: 'currencyName', sortable: true, headerName: "نام ارز", filter: 'agTextColumnFilter', width: 256 },
         { field: 'amountArz', sortable: true, headerName: "مقدار ارز ", filter: 'agNumberColumnFilter', width: 130, valueFormatter: params => Number(params.value).toLocaleString() },
-        { field: 'firstName', sortable: true, headerName: " نام مشتری", filter: 'agTextColumnFilter', width: 170 },
-        { field: 'amountPayment', sortable: true, headerName: " مبلغ تراکنش ریالی  ", filter: 'agNumberColumnFilter', width: 150, valueFormatter: params => Number(params.value).toLocaleString() },
+        { field: 'firstName', sortable: true, headerName: " نام مشتری", filter: 'agTextColumnFilter', width: 270 },
+        { field: 'amountPayment', sortable: true, headerName: " مبلغ تراکنش ریالی  ", filter: 'agNumberColumnFilter', width: 180, valueFormatter: params => Number(params.value).toLocaleString() },
         { field: 'bankName', sortable: true, headerName: "بانک صرافی   ", filter: 'agTextColumnFilter', width: 150 },
         {
             field: 'paymentDate', sortable: true, headerName: " تاريخ دریافت/پرداخت", filter: 'agTextColumnFilter', width: 200,
@@ -293,7 +282,7 @@ const RialiPaymentReport = () => {
             field: 'paymentMethod', sortable: true, headerName: "  روش دریافت/پرداخت", filter: 'agSetColumnFilter', width: 200,
             valueFormatter: params => getEnumValue(params.value, paymentMethod),
             filterParams: {
-                valueFormatter: params => params.value, //getEnumValue(Number(params.value), paymentMethod),
+                valueFormatter: params => getEnumValue(params.value, paymentMethod), //getEnumValue(Number(params.value), paymentMethod),
                 values: (params) => {params.success(paymentMethod.map(item => item.indexField))}
             }
         },
@@ -301,7 +290,7 @@ const RialiPaymentReport = () => {
             field: 'paymentType', sortable: true, headerName: "ابزار دریافت/پرداخت", filter: 'agSetColumnFilter', width: 160,
             valueFormatter: params => getEnumValue(params.value, paymentType),
             filterParams: {
-                valueFormatter: params => params.value,//getEnumValue(Number(params.value), paymentType),
+                valueFormatter: params => getEnumValue(params.value, paymentType),//getEnumValue(Number(params.value), paymentType),
                 values: (params) => {params.success(paymentType.map(item => item.indexField))}
             }
         },
@@ -347,25 +336,23 @@ const RialiPaymentReport = () => {
 
     const defaultColDef = useMemo(() => {
         return {
-            flex: 1,
-            minWidth: 150,
+            // flex: 1,
             filter: true,
             sortable: true,
             floatingFilter: true,
+            resizable: true,
         };
     }, []);
     useEffect(() => {
         if (gridApi) {
+            
             const dataSource = {
                 getRows: (params) => {
-                    console.log(params);
                     setServerRowsRequest(current => {
                         // 👇️ get copy of nested object
                         current.SortModels = params.sortModel;
-                        // current.filterModels= params.filterModel;
                         let filteredFields = params.filterModel;
                         let mappedFilters = [];
-                        console.log(filteredFields);
                         for (let filteredField in filteredFields) {
                             
                             let filterObject;
@@ -374,30 +361,20 @@ const RialiPaymentReport = () => {
                                     Field: filteredField,
                                     Condition1: filteredFields[filteredField].condition1,
                                 }
-                                if (filterObject.Condition1.filterType == "set") {
-                                    console.log(filterObject.Condition1.values);
-                                    filterObject.Condition1.values = filterObject.Condition1.values.join(',');
-                                }
-                                else {
+                                if (filterObject.Condition1.filterType != "set") {
                                     filterObject.Condition1.filter = filterObject.Condition1.filter.toString();
                                 }
                                 if (filteredFields[filteredField].operator) filterObject.FilterOperator = filteredFields[filteredField].operator;
                                 if (filteredFields[filteredField].condition2) filterObject.Condition2 = filteredFields[filteredField].condition2;
                             } else {
-                                console.log(filteredFields[filteredField]);
                                 filterObject = {
                                     Field: filteredField,
                                     Condition1: filteredFields[filteredField]
                                 }
-                                console.log(filterObject.Condition1.filterType);
-                                
-                                if (filterObject.Condition1.filterType == "set") {
-                                    console.log(filterObject.Condition1.values);
-                                    filterObject.Condition1.values = filterObject.Condition1.values.join(',');
-                                }
-                                else {
+                                if (filterObject.Condition1.filterType != "set") {
                                     filterObject.Condition1.filter = filterObject.Condition1.filter.toString();
                                 }
+
                             }
                             mappedFilters.push(filterObject)
 
@@ -409,10 +386,9 @@ const RialiPaymentReport = () => {
                     });
 
                     const page = params.endRow / perPage;
-  
+                    console.log(serverRowsRequest);
                     axios.post("/RialiPaymentReport", serverRowsRequest)
                         .then(res => {
-                            // console.log(res);
                             params.successCallback(res.data.data.list, res.data.data.totalCount);
                         }).catch(err => {
                             params.successCallback([], 0);
@@ -429,11 +405,9 @@ const RialiPaymentReport = () => {
 
 
     return (
-        <div style={{ height: 300, width: 1300 }}>
-            <h4>گزارش </h4>
+        <div style={{ height: 600, width: 1300 }}>
+            <h4>گزارش از پرداختهای ریالی </h4>
             <AgGridReact
-                ref={gridRef}
-                onFilterChanged={handleFilter}
                 pagination="true"
                 rowModelType={'infinite'}
                 paginationPageSize={perPage}
