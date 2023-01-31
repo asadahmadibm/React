@@ -1,20 +1,40 @@
-import react, { useState, useMemo, useCallback,useRef } from 'react'
+import react, { useState, useMemo, useCallback, useRef } from 'react'
 import { useEffect } from 'react';
 import axios from 'axios';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
-import Pagination from '../../Pagination';
-import { Alert, Modal } from 'antd';
 import '../../Pagination.css'
 import 'ag-grid-enterprise';
-import { Spin } from 'antd';
 import '../../spinner.css'
 import moment from 'jalali-moment';
+import { AutoComplete, Button, Space, Select, Form, Input,message } from 'antd';
 
 const RialiPaymentReport = () => {
+    const formRef = useRef(null);
+    const [optionsSelect, setOptionsSelect] = useState([]);
+    const [sarafi, setSarafi] = useState([]);
+
+    useEffect(() => {
+        console.log("loading");
+        axios.get("/Currency")
+            .then(
+                response => {
+                    setOptionsSelect(response.data.data.data.map(value => { return { label: value.id, value: value.farsiNm } }))
+
+                });
+                axios.get("/Sarafi")
+                .then(
+                    response => {
+                        
+                        setSarafi(response.data.data.map(value => { return { label: value.id, value: value.sarName } }))
+                    })
+                    
+            
+    }, []);
     const localeText = useMemo(() => {
         return {
+            "CopywithGroupHeaders" : "کپی با سرتیتر گروه بندی",
             "selectAll": "(انتخاب همه)",
             "selectAllSearchResults": "(انتخاب همه نتایج جستجو)",
             "searchOoo": "جستجو ...",
@@ -267,7 +287,7 @@ const RialiPaymentReport = () => {
         return foundItem.valueField;
     }
     const [columnDefs] = useState([
-        { field: 'sarafiId', sortable: true, headerName: "کد صرافی", filter: 'agNumberColumnFilter', width: 120 },
+        { field: 'sarafiId', sortable: true, headerName: "کد صرافی", filter: 'agNumberColumnFilter', width: 130 },
         { field: 'trackingCode', sortable: true, headerName: "شماره پيگيری ", filter: 'agTextColumnFilter', width: 150 },
         { field: 'currencyName', sortable: true, headerName: "نام ارز", filter: 'agTextColumnFilter', width: 256 },
         { field: 'amountArz', sortable: true, headerName: "مقدار ارز ", filter: 'agNumberColumnFilter', width: 130, valueFormatter: params => Number(params.value).toLocaleString() },
@@ -283,7 +303,7 @@ const RialiPaymentReport = () => {
             valueFormatter: params => getEnumValue(params.value, paymentMethod),
             filterParams: {
                 valueFormatter: params => getEnumValue(params.value, paymentMethod), //getEnumValue(Number(params.value), paymentMethod),
-                values: (params) => {params.success(paymentMethod.map(item => item.indexField))}
+                values: (params) => { params.success(paymentMethod.map(item => item.indexField)) }
             }
         },
         {
@@ -291,7 +311,7 @@ const RialiPaymentReport = () => {
             valueFormatter: params => getEnumValue(params.value, paymentType),
             filterParams: {
                 valueFormatter: params => getEnumValue(params.value, paymentType),//getEnumValue(Number(params.value), paymentType),
-                values: (params) => {params.success(paymentType.map(item => item.indexField))}
+                values: (params) => { params.success(paymentType.map(item => item.indexField)) }
             }
         },
         { field: 'posTrackingCode', sortable: true, headerName: " کد مرجع POS", filter: 'agTextColumnFilter', width: 250 },
@@ -345,12 +365,12 @@ const RialiPaymentReport = () => {
     }, []);
     const statusBar = useMemo(() => {
         return {
-          statusPanels: [{ statusPanel: 'agAggregationComponent' }],
+            statusPanels: [{ statusPanel: 'agAggregationComponent' }],
         };
-      }, []);
+    }, []);
     useEffect(() => {
         if (gridApi) {
-            
+
             const dataSource = {
                 getRows: (params) => {
                     setServerRowsRequest(current => {
@@ -359,7 +379,7 @@ const RialiPaymentReport = () => {
                         let filteredFields = params.filterModel;
                         let mappedFilters = [];
                         for (let filteredField in filteredFields) {
-                            
+
                             let filterObject;
                             if (filteredFields[filteredField].condition1) {
                                 filterObject = {
@@ -375,7 +395,7 @@ const RialiPaymentReport = () => {
                                     if (filterObject.Condition2.filterType != "set") {
                                         filterObject.Condition2.filter = filterObject.Condition2.filter.toString();
                                     }
-    
+
                                 }
                             } else {
                                 filterObject = {
@@ -397,27 +417,90 @@ const RialiPaymentReport = () => {
                     });
 
                     const page = params.endRow / perPage;
-                  
+
                     axios.post("/RialiPaymentReport", serverRowsRequest)
                         .then(res => {
-                            
+
                             params.successCallback(res.data.data.list, res.data.data.totalCount);
-                            
+
                         }).catch(err => {
                             params.successCallback([], 0);
                         }).finally(() => {
-                         });
+                        });
                 }
             }
 
             gridApi.setDatasource(dataSource);
         }
     }, [gridApi]);
-
-
+    const onReset = () => {
+        formRef.current?.resetFields();
+        gridApi.setFilterModel(null)
+      };
+    const onFinish = (values) => {
+        //sarafiid
+        message.error(gridApi.getFilterModel());
+        console.log(gridApi.getFilterModel());
+        var hardcodedFilter = {
+            currencyName
+                :
+                { filterType: 'text', type: 'contains', filter: values.currencyname },
+            sarafiId
+                :
+                { filterType: 'number', type: 'equals', filter: values.sarafiid }
+        }
+        gridApi.setFilterModel(hardcodedFilter)
+    };
     return (
-        <div style={{ height: 600, width: 1300 }}>
+        <div style={{ height: 540, width: 1300 }}>
             <h4>گزارش از پرداختهای ریالی </h4>
+            <Form ref={formRef} name="basic" onFinish={onFinish} >
+                <Space wrap>
+                    <Form.Item label="نام ارز" name="currencyname" className='ant-input-group-addon'
+                        rules={[
+                            {
+                                required: true,
+                                message: 'نام ارز ضروری است',
+                            },
+                        ]}>
+                        <Select
+                            //mode="multiple"
+                            showSearch
+                            allowClear
+                            style={{
+                                width: 200,
+                            }}
+                            placeholder="لطفا انتخاب نمایید"
+                            options={optionsSelect}
+                        />
+                    </Form.Item>
+                    <Form.Item name="sarafiid" label=" کد صرافی " className='ant-input-group-addon' rules={[
+                            {
+                                required: true,
+                                message: 'کد صرافی ضروری است',
+                            },
+                        ]}>
+                        {/* <Input  /> */}
+                        <Select
+                            //mode="multiple"
+                            showSearch
+                            allowClear
+                            style={{
+                                width: 200,
+                            }}
+                            placeholder="لطفا انتخاب نمایید"
+                            options={sarafi}
+                        />
+                    </Form.Item>
+                    <Form.Item>
+                    <Space wrap>
+                        <Button type="primary" htmlType="submit">جستجو </Button>
+                        <Button htmlType="button" onClick={onReset}> حذف فیلتر </Button>
+                    </Space>
+                    </Form.Item>
+
+                </Space>
+            </Form>
             <AgGridReact
                 pagination="true"
                 rowModelType={'infinite'}
