@@ -14,6 +14,7 @@ import SarafiManagment from './Sana2/Sana/sarafi/SarafiManagment';
 import { Route, Routes, useNavigate } from "react-router-dom";
 import AgGridPagination from './AgGridPagination'
 import RialiPaymentReport from './Sana2/Sana/RialiPaymentReport';
+import RialiPaymentDetail from './Sana2/Sana/RialiPaymentDetail';
 
 import '../index.css'
 
@@ -103,7 +104,9 @@ const MainLayoutNew = () => {
                         <Route exact path='/SarafiManagment' element={<SarafiManagment />} />
                         <Route exact path='/AgGridPagination' element={<AgGridPagination />} />
                         <Route exact path='/RialiPaymentReport' element={<RialiPaymentReport />} />
+                        <Route exact path='/RialiPaymentDetail' element={<RialiPaymentDetail />} />
                         <Route exact path='/NimaRequest' element={<NimaRequest />} />
+                        
 
 
                     </Routes>

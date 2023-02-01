@@ -8,9 +8,12 @@ import '../../Pagination.css'
 import 'ag-grid-enterprise';
 import '../../spinner.css'
 import moment from 'jalali-moment';
-import { AutoComplete, Button, Space, Select, Form, Input,message } from 'antd';
-
+import { AutoComplete, Button, Space, Select, Form, Input, message } from 'antd';
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const RialiPaymentReport = () => {
+    const navigate = useNavigate();
     const formRef = useRef(null);
     const [optionsSelect, setOptionsSelect] = useState([]);
     const [sarafi, setSarafi] = useState([]);
@@ -23,18 +26,18 @@ const RialiPaymentReport = () => {
                     setOptionsSelect(response.data.data.data.map(value => { return { label: value.id, value: value.farsiNm } }))
 
                 });
-                axios.get("/Sarafi")
-                .then(
-                    response => {
-                        
-                        setSarafi(response.data.data.map(value => { return { label: value.id, value: value.sarName } }))
-                    })
-                    
-            
+        axios.get("/Sarafi")
+            .then(
+                response => {
+
+                    setSarafi(response.data.data.map(value => { return { label: value.id, value: value.sarName } }))
+                })
+
+
     }, []);
     const localeText = useMemo(() => {
         return {
-            "CopywithGroupHeaders" : "کپی با سرتیتر گروه بندی",
+            "CopywithGroupHeaders": "کپی با سرتیتر گروه بندی",
             "selectAll": "(انتخاب همه)",
             "selectAllSearchResults": "(انتخاب همه نتایج جستجو)",
             "searchOoo": "جستجو ...",
@@ -317,6 +320,8 @@ const RialiPaymentReport = () => {
         { field: 'posTrackingCode', sortable: true, headerName: " کد مرجع POS", filter: 'agTextColumnFilter', width: 250 },
         { field: 'shebaSarafi', sortable: true, headerName: "شماره شبای مشتری ", filter: 'agTextColumnFilter', width: 250 },
         { field: 'payaTrackingCode', sortable: true, headerName: " کد رهگیری پایا", filter: 'agTextColumnFilter', width: 250 },
+        { field: 'transactionId', sortable: true, headerName: " کد ", filter: 'agNumberColumnFilter', width: 250 },
+        
         {
             field: 'paymentValidity', sortable: true, headerName: "نتیجه صحت پرداخت ", filter: 'agSetColumnFilter', width: 250,
             valueFormatter: params => getEnumValue(params.value, paymentValidity),
@@ -436,7 +441,17 @@ const RialiPaymentReport = () => {
     const onReset = () => {
         formRef.current?.resetFields();
         gridApi.setFilterModel(null)
-      };
+    };
+    const onDetail = () => {
+        let selectedData = gridApi.getSelectedRows();
+
+        if (selectedData.length < 1) {
+            // message.error("ردیفی را انتخاب نمایید");
+            toast.warn("ردیفی را انتخاب نمایید");
+            return;
+        }
+        navigate("/RialiPaymentDetail",{state: {transactionId:selectedData[0].transactionId}})
+    }
     const onFinish = (values) => {
         //sarafiid
         message.error(gridApi.getFilterModel());
@@ -475,11 +490,11 @@ const RialiPaymentReport = () => {
                         />
                     </Form.Item>
                     <Form.Item name="sarafiid" label=" کد صرافی " className='ant-input-group-addon' rules={[
-                            {
-                                required: true,
-                                message: 'کد صرافی ضروری است',
-                            },
-                        ]}>
+                        {
+                            required: true,
+                            message: 'کد صرافی ضروری است',
+                        },
+                    ]}>
                         {/* <Input  /> */}
                         <Select
                             //mode="multiple"
@@ -493,10 +508,12 @@ const RialiPaymentReport = () => {
                         />
                     </Form.Item>
                     <Form.Item>
-                    <Space wrap>
-                        <Button type="primary" htmlType="submit">جستجو </Button>
-                        <Button htmlType="button" onClick={onReset}> حذف فیلتر </Button>
-                    </Space>
+                        <Space wrap>
+                            <Button type="primary" htmlType="submit">جستجو </Button>
+                            <Button htmlType="button" onClick={onReset}> حذف فیلتر </Button>
+                            <Button htmlType="button" onClick={onDetail}> جزییات  </Button>
+
+                        </Space>
                     </Form.Item>
 
                 </Space>
@@ -508,6 +525,7 @@ const RialiPaymentReport = () => {
                 cacheBlockSize={perPage}
                 onGridReady={onGridReady}
                 className="ag-theme-alpine"
+                rowSelection={"single"}
                 enableRtl="true"
                 headerHeight="30"
                 rowHeight="30"
@@ -517,7 +535,7 @@ const RialiPaymentReport = () => {
                 columnDefs={columnDefs}
             >
             </AgGridReact>
-
+           
         </div>
 
 

@@ -134,3 +134,6 @@ code {
 .ant-form-item-explain-error{
   font-family:  "IRANSans" !important;
 }
+.Toastify__toast {
+font-family: 'IRANSans' !important
+}
