@@ -15,6 +15,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import AgGridPagination from './AgGridPagination'
 import RialiPaymentReport from './Sana2/Sana/RialiPaymentReport';
 import RialiPaymentDetail from './Sana2/Sana/RialiPaymentDetail';
+import CompanyDetail from './CompanyDetail';
 
 import '../index.css'
 
@@ -36,6 +37,7 @@ const items = [
         getItem('لیست ارزها', '3'),
         getItem(' گزارش آماری ', '4'),
         getItem('گزارش از پرداختهای ریالی ', '7'),
+        getItem('جزییات شرکت', '8'),
     ]),
     getItem('نیما', 'sub2', "", [getItem('درحواستهای فعال', '6')]),
 ];
@@ -61,6 +63,8 @@ const MainLayoutNew = () => {
             navigate("/NimaRequest")
         if (e.key === "7")
             navigate("/RialiPaymentReport")
+            if (e.key === "8")
+            navigate("/CompanyDetail")            
     };
 
 
@@ -92,7 +96,7 @@ const MainLayoutNew = () => {
                     style={{
                         margin: '8px 8px',
                         padding: '15px 20px',
-                        minHeight: 650,
+                        minHeight: 750,
                         background: colorBgContainer,
                     }}
                 >
@@ -106,7 +110,7 @@ const MainLayoutNew = () => {
                         <Route exact path='/RialiPaymentReport' element={<RialiPaymentReport />} />
                         <Route exact path='/RialiPaymentDetail' element={<RialiPaymentDetail />} />
                         <Route exact path='/NimaRequest' element={<NimaRequest />} />
-                        
+                        <Route exact path='/CompanyDetail' element={<CompanyDetail />} />
 
 
                     </Routes>

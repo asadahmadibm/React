@@ -101,6 +101,10 @@ code {
   font-family:  "IRANSans" !important;
 }
 
+.ant-switch-inner-checked{
+  font-family:  "IRANSans" !important;
+}
+
 :where(.css-dev-only-do-not-override-1n7nwfa).ant-form-item .ant-form-item-label >label {
 
   margin-right: 10px;
@@ -109,6 +113,14 @@ code {
   border-radius: 5px 0px 0px 5px !important;
 }
 
+.ant-picker {
+  border-radius: 5px 0px 0px 5px !important;
+}
+
+.ant-input-number {
+  border-radius: 5px 0px 0px 5px !important;
+  font-family:  "IRANSans" !important;
+}
 .ant-layout-content {
   margin: 22px;
     padding: 16px 20px;
