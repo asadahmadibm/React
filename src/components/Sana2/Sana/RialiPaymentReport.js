@@ -19,18 +19,18 @@ const RialiPaymentReport = () => {
     const [sarafi, setSarafi] = useState([]);
 
     useEffect(() => {
-        console.log("loading");
         axios.get("/Currency")
             .then(
                 response => {
-                    setOptionsSelect(response.data.data.data.map(value => { return { label: value.id, value: value.farsiNm } }))
+                    console.log(response.data.data);
+                    setOptionsSelect(response.data.data.map(value => { return { label: value.id, value: value.farsiNm } }))
 
                 });
         axios.get("/Sarafi")
             .then(
                 response => {
 
-                    setSarafi(response.data.data.map(value => { return { label: value.id, value: value.sarName } }))
+                    setSarafi(response.data.data.map(value => { return { label: value.sarName, value: value.sarName } }))
                 })
 
 

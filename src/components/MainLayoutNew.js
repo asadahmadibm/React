@@ -17,6 +17,7 @@ import RialiPaymentReport from './Sana2/Sana/RialiPaymentReport';
 import RialiPaymentDetail from './Sana2/Sana/RialiPaymentDetail';
 import CompanyDetail from './CompanyDetail';
 import ExchangeReport from './Sana2/Sana/ExchangeReport';
+import ExchangesDetail from './Sana2/Sana/ExchangesDetail';
 import '../index.css'
 
 import { Layout, Menu, theme } from 'antd';
@@ -99,7 +100,7 @@ const MainLayoutNew = () => {
                     style={{
                         margin: '8px 8px',
                         padding: '15px 20px',
-                        minHeight: 750,
+                        minHeight: 650,
                         background: colorBgContainer,
                     }}
                 >
@@ -115,6 +116,7 @@ const MainLayoutNew = () => {
                         <Route exact path='/NimaRequest' element={<NimaRequest />} />
                         <Route exact path='/CompanyDetail' element={<CompanyDetail />} />
                         <Route exact path='/ExchangeReport' element={<ExchangeReport />} />
+                        <Route exact path='/ExchangesDetail' element={<ExchangesDetail />} />
                         
 
                     </Routes>

@@ -132,7 +132,9 @@ code {
     border-radius: 10px;
 }
 
-
+.ant-menu {
+  font-family:  "IRANSans" !important;  
+}
 .ant-select-selection-item{
   font-family:  "IRANSans" !important;
 }
@@ -148,4 +150,14 @@ code {
 }
 .Toastify__toast {
 font-family: 'IRANSans' !important
+}
+/* .ant-form-item {
+  background-color: #fff29f33 !important;
+} */
+.ant-input-disabled {
+  color: black;
+}
+
+:where(.css-dev-only-do-not-override-1n7nwfa).ant-input-disabled, :where(.css-dev-only-do-not-override-1n7nwfa).ant-input[disabled] {
+  color: black;
 }
