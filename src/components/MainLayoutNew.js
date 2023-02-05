@@ -16,7 +16,7 @@ import AgGridPagination from './AgGridPagination'
 import RialiPaymentReport from './Sana2/Sana/RialiPaymentReport';
 import RialiPaymentDetail from './Sana2/Sana/RialiPaymentDetail';
 import CompanyDetail from './CompanyDetail';
-
+import ExchangeReport from './Sana2/Sana/ExchangeReport';
 import '../index.css'
 
 import { Layout, Menu, theme } from 'antd';
@@ -37,7 +37,8 @@ const items = [
         getItem('لیست ارزها', '3'),
         getItem(' گزارش آماری ', '4'),
         getItem('گزارش از پرداختهای ریالی ', '7'),
-        getItem('جزییات شرکت', '8'),
+        getItem('گزارش خرید و فروش ارز ', '9'),
+        getItem('جزییات ', '8'),
     ]),
     getItem('نیما', 'sub2', "", [getItem('درحواستهای فعال', '6')]),
 ];
@@ -65,6 +66,8 @@ const MainLayoutNew = () => {
             navigate("/RialiPaymentReport")
             if (e.key === "8")
             navigate("/CompanyDetail")            
+            if (e.key === "9")
+            navigate("/ExchangeReport")     
     };
 
 
@@ -111,7 +114,8 @@ const MainLayoutNew = () => {
                         <Route exact path='/RialiPaymentDetail' element={<RialiPaymentDetail />} />
                         <Route exact path='/NimaRequest' element={<NimaRequest />} />
                         <Route exact path='/CompanyDetail' element={<CompanyDetail />} />
-
+                        <Route exact path='/ExchangeReport' element={<ExchangeReport />} />
+                        
 
                     </Routes>
                 </Content>
