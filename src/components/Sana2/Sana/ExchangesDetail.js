@@ -16,17 +16,18 @@ const ExchangesDetail = () => {
     const formRef = useRef(null);
     const [paymentType, setPaymentType] = useState([
         {
-            value: '1',
+            value: 1,
             label: 'نقدی',
         },
         {
-            value: '2',
+            value: 2,
             label: 'حواله',
         }
 
     ]);
 
     useEffect(() => {
+        if(params.state !=null) {
         axios.get("/Exchanges?id=" + Number(params.state.id))
             .then(res => {
                 setFormvalues(res.data.data[0]);
@@ -36,6 +37,7 @@ const ExchangesDetail = () => {
 
             }).finally(() => {
             });
+        }
     }, []);
 
     const onReset = () => {
