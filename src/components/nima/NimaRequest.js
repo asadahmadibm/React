@@ -56,9 +56,7 @@ const NimaRequest = () => {
     ])
 
     return (
-        <div style={{ height: 250, width: 1300 }}>
         <AdminGrid columnDefs={columnDefs} title="درخواستهای ارز" apiname="NimaRequest" />
-        </div>
 
     )
 }

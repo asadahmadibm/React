@@ -8,7 +8,7 @@ import '../../Pagination.css'
 import 'ag-grid-enterprise';
 import '../../spinner.css'
 import moment from 'jalali-moment';
-import { AutoComplete, Button, Space, Select, Form, Input, message } from 'antd';
+import { AutoComplete, Button, Space, Select, Form, Input, message,Card} from 'antd';
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -467,57 +467,67 @@ const RialiPaymentReport = () => {
         gridApi.setFilterModel(hardcodedFilter)
     };
     return (
-        <div style={{ height: 540, width: 1300 }}>
-            <h4>گزارش از پرداختهای ریالی </h4>
-            <Form ref={formRef} name="basic" onFinish={onFinish} >
-                <Space wrap>
-                    <Form.Item label="نام ارز" name="currencyname" className='ant-input-group-addon'
-                        rules={[
-                            {
-                                required: true,
-                                message: 'نام ارز ضروری است',
-                            },
-                        ]}>
-                        <Select
-                            //mode="multiple"
-                            showSearch
-                            allowClear
-                            style={{
-                                width: 200,
-                            }}
-                            placeholder="لطفا انتخاب نمایید"
-                            options={optionsSelect}
-                        />
-                    </Form.Item>
-                    <Form.Item name="sarafiid" label=" کد صرافی " className='ant-input-group-addon' rules={[
+        <Card type="inner" title="گزارش از پرداختهای ریالی" size="default" extra={
+            <Form ref={formRef} name="basic" onFinish={onFinish} 
+            style={{
+              //  height:40,
+                
+            }}
+            >
+            <Space >
+                <Form.Item label="نام ارز" name="currencyname" className='ant-input-group-addon'
+                
+                    rules={[
                         {
                             required: true,
-                            message: 'کد صرافی ضروری است',
+                            message: 'نام ارز ضروری است',
                         },
                     ]}>
-                        {/* <Input  /> */}
-                        <Select
-                            //mode="multiple"
-                            showSearch
-                            allowClear
-                            style={{
-                                width: 200,
-                            }}
-                            placeholder="لطفا انتخاب نمایید"
-                            options={sarafi}
-                        />
-                    </Form.Item>
-                    <Form.Item>
-                        <Space wrap>
-                            <Button type="primary" htmlType="submit">جستجو </Button>
-                            <Button htmlType="button" onClick={onReset}> حذف فیلتر </Button>
-                            <Button htmlType="button" onClick={onDetail}> جزییات  </Button>
+                    <Select
+                        //mode="multiple"
+                        showSearch
+                        allowClear
+                        style={{
+                            width: 200,
+                            
+                        }}
+                        placeholder="لطفا انتخاب نمایید"
+                        options={optionsSelect}
+                    />
+                </Form.Item>
+                <Form.Item name="sarafiid" label=" کد صرافی " className='ant-input-group-addon' rules={[
+                    {
+                        required: true,
+                        message: 'کد صرافی ضروری است',
+                    },
+                ]}>
+                    {/* <Input  /> */}
+                    <Select
+                        //mode="multiple"
+                        showSearch
+                        allowClear
+                        style={{
+                            width: 200,
+                        }}
+                        placeholder="لطفا انتخاب نمایید"
+                        options={sarafi}
+                    />
+                </Form.Item>
+                <Form.Item>
+                    <Space wrap>
+                        <Button type="primary" htmlType="submit">جستجو </Button>
+                        <Button htmlType="button" onClick={onReset}> حذف فیلتر </Button>
+                        <Button htmlType="button" onClick={onDetail}> جزییات  </Button>
 
-                        </Space>
-                    </Form.Item>
+                    </Space>
+                </Form.Item>
 
-                </Space>
-            </Form>
+            </Space>
+        </Form>
+
+        }>
+        <div style={{ height: "76vh", width: "100%" }}>
+ 
             <AgGridReact
                 pagination="true"
                 rowModelType={'infinite'}
@@ -537,7 +547,7 @@ const RialiPaymentReport = () => {
             </AgGridReact>
            
         </div>
-
+        </Card>
 
     )
 }

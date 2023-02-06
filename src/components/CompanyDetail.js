@@ -9,7 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
-import { DatePicker, ConfigProvider } from "antd";
+import { DatePicker, ConfigProvider, Card } from "antd";
 import { DatePicker as DatePickerJalali, Calendar, JalaliLocaleListener, useJalaliLocaleListener } from "antd-jalali";
 import fa_IR from "antd/lib/locale/fa_IR";
 import en_US from "antd/lib/locale/en_US";
@@ -80,8 +80,20 @@ const CompanyDetail = () => {
 
 
     return (
-        <Container>
-            <h4> جزییات شرکت   </h4>
+        <Card type="inner" title="جزییات  شرکت" size="default" extra={
+            <Space wrap>
+                <Checkbox
+                    checked={componentDisabled}
+                    onChange={(e) => setComponentDisabled(e.target.checked)}
+                >
+                    Form disabled
+                </Checkbox>
+                <Button type="primary" htmlType="submit" >ذخیره  </Button>
+                <Button type="primary" danger htmlType="button" onClick={onFill}>پر نمودن فرم </Button>
+                <Button htmlType="button" onClick={onReset}>  پاکسازی فرم </Button>
+            </Space>
+
+        }>
 
             <Form ref={formRef} form={form} name="basic" onFinish={onFinish} disabled={componentDisabled}>
                 {/* <Space size={[8, 45]} wrap> */}
@@ -242,30 +254,12 @@ const CompanyDetail = () => {
                             </ConfigProvider>
                         </Form.Item>
                     </Col>
-
-                    <Col lg={3} md={6} sm={12} >
-                        <Form.Item>
-                            <Space wrap>
-                                <Button type="primary" htmlType="submit" >ذخیره  </Button>
-                                <Button type="primary" danger htmlType="button" onClick={onFill}>پر نمودن فرم </Button>
-                                <Button htmlType="button" onClick={onReset}>  پاکسازی فرم </Button>
-
-                            </Space>
-                        </Form.Item>
-
-                    </Col>
-
                 </Row>
                 {/* </Space> */}
             </Form>
-            <Checkbox
-                checked={componentDisabled}
-                onChange={(e) => setComponentDisabled(e.target.checked)}
-            >
-                Form disabled
-            </Checkbox>
 
-        </Container >
+
+        </Card>
 
 
     )

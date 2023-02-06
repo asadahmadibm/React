@@ -20,7 +20,10 @@ import ExchangeReport from './Sana2/Sana/ExchangeReport';
 import ExchangesDetail from './Sana2/Sana/ExchangesDetail';
 import '../index.css'
 
-import { Layout, Menu, theme } from 'antd';
+import { Layout, Menu, theme, Button } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
+import { Dropdown, Space } from 'antd';
+import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import React, { useState } from 'react';
 import NimaRequest from './nima/NimaRequest';
 const { Header, Sider, Content } = Layout;
@@ -33,6 +36,7 @@ function getItem(label, key, icon, children) {
     };
 }
 const items = [
+
     // getItem('Option 1', '1'),
     getItem('سنا', 'sub1', "", [
         getItem('لیست ارزها', '3'),
@@ -65,16 +69,16 @@ const MainLayoutNew = () => {
             navigate("/NimaRequest")
         if (e.key === "7")
             navigate("/RialiPaymentReport")
-            if (e.key === "8")
-            navigate("/CompanyDetail")            
-            if (e.key === "9")
-            navigate("/ExchangeReport")     
+        if (e.key === "8")
+            navigate("/CompanyDetail")
+        if (e.key === "9")
+            navigate("/ExchangeReport")
     };
 
-
+    const [current, setCurrent] = useState('mail');
     return (
         <Layout>
-            <Sider trigger={null} collapsible collapsed={collapsed}> 
+            <Sider trigger={null} collapsible collapsed={collapsed}>
                 <div className='logo'></div>
                 <Menu onClick={onClick}
                     theme="dark"
@@ -93,8 +97,18 @@ const MainLayoutNew = () => {
                 >
                     {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                         className: 'trigger',
+                        style :{
+                            color: 'white',
+                        },
                         onClick: () => setCollapsed(!collapsed),
                     })}
+                    <Space >
+                        <Button type="" htmlType="button"
+                            style={{
+                                color: 'white',
+                            }}
+                        >ورود به سیستم </Button>
+                    </Space>
                 </Header>
                 <Content
                     style={{
@@ -117,7 +131,7 @@ const MainLayoutNew = () => {
                         <Route exact path='/CompanyDetail' element={<CompanyDetail />} />
                         <Route exact path='/ExchangeReport' element={<ExchangeReport />} />
                         <Route exact path='/ExchangesDetail' element={<ExchangesDetail />} />
-                        
+
 
                     </Routes>
                 </Content>

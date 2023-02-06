@@ -10,7 +10,7 @@ const Currency = () => {
     ])
 
     return (
-        <AdminGrid columnDefs={columnDefs} title=" لیست ارزها<" apiname="Currency" />
+        <AdminGrid columnDefs={columnDefs} title=" لیست ارزها" apiname="Currency" />
     )
 }
 export default Currency

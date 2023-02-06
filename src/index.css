@@ -122,13 +122,13 @@ code {
   font-family:  "IRANSans" !important;
 }
 .ant-layout-content {
-  margin: 22px;
-    padding: 16px 20px;
+   margin: 3px !important; 
+    /* padding: 16px 20px; */
     min-height: 650px;
     background: rgb(255, 255, 255);
-    box-shadow: black;
+    /* box-shadow: black;
     box-shadow: 10px 10px;
-    box-shadow: 10px 10px 5px lightgrey;
+    box-shadow: 10px 10px 5px lightgrey; */
     border-radius: 10px;
 }
 
@@ -161,6 +161,9 @@ font-family: 'IRANSans' !important
 :where(.css-dev-only-do-not-override-1n7nwfa).ant-input-disabled, :where(.css-dev-only-do-not-override-1n7nwfa).ant-input[disabled] {
   color: black;
 }
+.ant-card-body {
+  padding: 10px 10px !important;
+}
 
 .ant-input-number-input-wrap {
 	margin: 2px;
@@ -170,3 +173,44 @@ font-family: 'IRANSans' !important
   .ant-select-selection-item {
     color: black;
   }
+
+  .ant-card-head {
+    font-family:  "IRANSans" !important;
+  }
+ 
+  .ant-layout-content {
+    padding: 0px !important;
+  }
+.ant-form-item {
+  height: 24px !important;
+}
+
+.ant-input-group-addon  {
+  height: 25px !important;
+}
+.ant-layout-header {
+  background-color: #673ab7 !important;
+}
+
+/* .anticon {
+  color: white;
+} */
+
+:where(.css-dev-only-do-not-override-1n7nwfa).ant-card-bordered {
+  border: 1px solid #D2D2D2;
+}
+
+.ant-card-head {
+  border-bottom: 1px solid #D2D2D2 !important;
+}
+
+
+
+:where(.css-dev-only-do-not-override-1n7nwfa).ant-menu-dark .ant-menu-item-selected {
+  background-color: #673ab7 !important;
+}
+
+.ant-form-item-explain-error {
+  font-family:  "IRANSans" !important;
+  font-size: smaller !important;
+} 

@@ -6,11 +6,11 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import 'ag-grid-enterprise';
-import {Button} from 'antd';
 import moment from 'jalali-moment';
 import PropTypes from 'prop-types'
 import { ToastContainer, toast } from 'react-toastify';
-import { Space } from 'antd';
+import { CommentOutlined, CustomerServiceOutlined } from '@ant-design/icons';
+import { AutoComplete, Dropdown, Card, Checkbox, Button, Switch, InputNumber, Space, Select, Form, Input, message } from 'antd';
 
 const AdminGrid = (props) => {
     const { } = props
@@ -280,7 +280,7 @@ const AdminGrid = (props) => {
     }, []);
     useEffect(() => {
         if (gridApi) {
-
+            // gridApi.sizeColumnsToFit();
             const dataSource = {
                 getRows: (params) => {
                     setServerRowsRequest(current => {
@@ -328,7 +328,7 @@ const AdminGrid = (props) => {
 
                     const page = params.endRow / perPage;
 
-                    axios.post("/"+props.apiname, serverRowsRequest)
+                    axios.post("/" + props.apiname, serverRowsRequest, { timeout: 90000 })
                         .then(res => {
 
                             params.successCallback(res.data.data.list, res.data.data.totalCount);
@@ -344,7 +344,7 @@ const AdminGrid = (props) => {
             gridApi.setDatasource(dataSource);
         }
     }, [gridApi]);
-    const onFill=()=>{
+    const onFill = () => {
         let selectedData = gridApi.getSelectedRows();
 
         if (selectedData.length < 1) {
@@ -352,34 +352,38 @@ const AdminGrid = (props) => {
             toast.warn("ردیفی را انتخاب نمایید");
             return;
         }
-        navigate("/"+props.pageDetail,{state: {id:selectedData[0].id}})
+        navigate("/" + props.pageDetail, { state: { id: selectedData[0].id } })
     }
     return (
-        <div style={{ height: 550, width: 1300 }}>
-            <Space>
-                <h4>{props.title}</h4>
-                <Button type="primary" htmlType="button" onClick={onFill}>جزییات   </Button>
-            </Space>
-            
-            <AgGridReact
-                pagination="true"
-                rowModelType={'infinite'}
-                paginationPageSize={perPage}
-                cacheBlockSize={perPage}
-                onGridReady={onGridReady}
-                className="ag-theme-alpine"
-                enableRtl="true"
-                headerHeight="30"
-                rowHeight="30"
-                rowSelection={"single"}
-                enableRangeSelection="true"
-                localeText={localeText}
-                defaultColDef={defaultColDef}
-                columnDefs={props.columnDefs}
-            >
-            </AgGridReact>
 
-        </div>
+        <Card type="inner" title={props.title} size="default" extra={
+            <Space >
+                <Button type="primary" htmlType="button" onClick={onFill}>جزییات </Button>
+            </Space>
+
+        }>
+            <div style={{ height: "76vh", width: "100%" }}>
+                <AgGridReact
+                    pagination="true"
+                    rowModelType={'infinite'}
+                    paginationPageSize={perPage}
+                    cacheBlockSize={perPage}
+                    onGridReady={onGridReady}
+                    className="ag-theme-alpine"
+                    enableRtl="true"
+                    headerHeight="30"
+                    rowHeight="30"
+                    rowSelection={"single"}
+                    enableRangeSelection="true"
+                    localeText={localeText}
+                    defaultColDef={defaultColDef}
+                    columnDefs={props.columnDefs}
+                    multiSortActive={true}
+
+                >
+                </AgGridReact>
+            </div>
+        </Card>
 
     )
 }
