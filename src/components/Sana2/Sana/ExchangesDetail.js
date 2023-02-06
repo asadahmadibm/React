@@ -14,29 +14,25 @@ const ExchangesDetail = () => {
     let params = useLocation();
     const [form] = Form.useForm();
     const formRef = useRef(null);
-    const [paymentType, setPaymentType] = useState([
-        {
-            value: 1,
-            label: 'نقدی',
-        },
-        {
-            value: 2,
-            label: 'حواله',
-        }
-
-    ]);
+    const [paymentType] = useState([{ value: 1, label: 'نقدی', }, { value: 2, label: 'حواله', }]);
+    const [transactionType] = useState([{ value: 1, label: "خرید " }, { value: 2, label: "فروش" }]);
+    const [customerType] = useState([{ value: 1, label: "حقیقی " }, { value: 2, label: "حقوقی" }, { value: 3, label: "تابعه خارجی" }]);
+    const [nationalIdValidation] = useState([{ value: 0, label: "  استعلام نشده " }, { value: 1, label: "معتبر  " }, { value: 2, label: " نامعتبر" }, { value: 3, label: " معتبر" }, { value: 4, label: " معتبر" }, { value: 5, label: " معتبر" }, { value: 6, label: " معتبر" }, { value: 255, label: "" }]);
+    const [status] = useState([{ value: 0, label: "معتبر " }, { value: 1, label: "استفاده شده" }, { value: 2, label: "باطل شده" }]);
+    const [mobileNumValidation] = useState([{ value: 0, label: "استعلام نشده " }, { value: 1, label: " معتبر" }, { value: 2, label: "نامعتبر" }, { value: 3, label: "نامشخص" }]);
+    const [currencySource] = useState([{ value: 1, label: "منابع داخلی " }, { value: 2, label: "منابع بانک مرکزی" }, { value: 3, label: " از محل خرید از بازار متشکل ارزی ایران" }, { value: 4, label: " از محل خرید از بازار متشکل ارزی ایران - صادرات" }]);
 
     useEffect(() => {
-        if(params.state !=null) {
-        axios.get("/Exchanges?id=" + Number(params.state.id))
-            .then(res => {
-                setFormvalues(res.data.data[0]);
-                form.setFieldsValue(res.data.data[0])
-            }).catch(err => {
-                toast.warn("اشکال در فراخوانی اتطلاعات");
+        if (params.state != null) {
+            axios.get("/Exchanges?id=" + Number(params.state.id))
+                .then(res => {
+                    setFormvalues(res.data.data[0]);
+                    form.setFieldsValue(res.data.data[0])
+                }).catch(err => {
+                    toast.warn("اشکال در فراخوانی اتطلاعات");
 
-            }).finally(() => {
-            });
+                }).finally(() => {
+                });
         }
     }, []);
 
@@ -73,7 +69,11 @@ const ExchangesDetail = () => {
                                     message: 'کد ضروری است',
                                 },
                             ]}>
-                            <InputNumber placeholder=" کد "></InputNumber >
+                            <InputNumber 
+                                style={{
+                                    width: '100%',
+                                }}
+                            ></InputNumber >
 
                         </Form.Item>
                     </Col>
@@ -85,7 +85,7 @@ const ExchangesDetail = () => {
                                     message: 'شماره رهگیری  ضروری است',
                                 },
                             ]}>
-                            <Input placeholder=" شماره رهگیری  "></Input>
+                            <Input ></Input>
 
                         </Form.Item>
                     </Col>
@@ -168,7 +168,11 @@ const ExchangesDetail = () => {
                                     message: '   مقدار  ضروری است',
                                 },
                             ]}>
-                            <Input ></Input>
+                            <InputNumber placeholder=" کد " formatter={(value) => ` ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                style={{
+                                    width: '100%',
+                                }}
+                            ></InputNumber >
 
                         </Form.Item>
                     </Col>
@@ -180,7 +184,11 @@ const ExchangesDetail = () => {
                                     message: '   نرخ  ضروری است',
                                 },
                             ]}>
-                            <Input ></Input>
+                             <InputNumber placeholder=" کد " formatter={(value) => ` ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                style={{
+                                    width: '100%',
+                                }}
+                            ></InputNumber >
 
                         </Form.Item>
                     </Col>
@@ -202,7 +210,7 @@ const ExchangesDetail = () => {
                                 // style={{
                                 //     width: 200,
                                 // }}
-                                placeholder="لطفا انتخاب نمایید"
+                                // placeholder="لطفا انتخاب نمایید"
                                 options={paymentType}
                             >
                             </Select>
@@ -224,7 +232,17 @@ const ExchangesDetail = () => {
                                     message: '   نوع عملیات   ضروری است',
                                 },
                             ]}>
-                            <Input ></Input>
+                            <Select
+                                //mode="multiple"
+                                showSearch
+                                allowClear
+                                // style={{
+                                //     width: 200,
+                                // }}
+                                // placeholder="لطفا انتخاب نمایید"
+                                options={transactionType}
+                            >
+                            </Select>
 
                         </Form.Item>
                     </Col>
@@ -236,19 +254,39 @@ const ExchangesDetail = () => {
                                     message: '   نوع مشتری   ضروری است',
                                 },
                             ]}>
-                            <Input ></Input>
+                            <Select
+                                //mode="multiple"
+                                showSearch
+                                allowClear
+                                // style={{
+                                //     width: 200,
+                                // }}
+                                // placeholder="لطفا انتخاب نمایید"
+                                options={customerType}
+                            >
+                            </Select>
 
                         </Form.Item>
                     </Col>
                     <Col lg={3} md={6} sm={12} >
-                        <Form.Item label="  وضعیت احراز هویت مشتری " name="nationalIdValidation" className='ant-input-group-addon'
+                        <Form.Item label="   احراز هویت مشتری " name="nationalIdValidation" className='ant-input-group-addon'
                             rules={[
                                 {
                                     required: true,
                                     message: '    وضعیت احراز هویت مشتری  ضروری است',
                                 },
                             ]}>
-                            <Input ></Input>
+                            <Select
+                                //mode="multiple"
+                                showSearch
+                                allowClear
+                                // style={{
+                                //     width: 200,
+                                // }}
+                                // placeholder="لطفا انتخاب نمایید"
+                                options={nationalIdValidation}
+                            >
+                            </Select>
 
                         </Form.Item>
                     </Col>
@@ -260,7 +298,11 @@ const ExchangesDetail = () => {
                                     message: '    کد صرافی  ضروری است',
                                 },
                             ]}>
-                            <Input ></Input>
+                            <InputNumber placeholder=" کد "
+                                style={{
+                                    width: '100%',
+                                }}
+                            ></InputNumber >
 
                         </Form.Item>
                     </Col>
@@ -292,20 +334,62 @@ const ExchangesDetail = () => {
                         </Form.Item>
                     </Col>
                     <Col lg={3} md={6} sm={12} >
-                        <Form.Item label="  وضعیت احراز هویت نماینده مشتری" name="agentNationalIdValidation" className='ant-input-group-addon'                          >
-                            <Input ></Input>
+                        <Form.Item label="   احراز هویت نماینده مشتری" name="agentNationalIdValidation" className='ant-input-group-addon'                          >
+                            <Select
+                                //mode="multiple"
+                                showSearch
+                                allowClear
+                                // style={{
+                                //     width: 200,
+                                // }}
+                                // placeholder="لطفا انتخاب نمایید"
+                                options={nationalIdValidation}
+                            >
+                            </Select>
                         </Form.Item>
                     </Col>
                     <Col lg={3} md={6} sm={12} >
                         <Form.Item label="  کد پیگری تراکنش ابطال شده" name="refTrackingCode" className='ant-input-group-addon'                          >
-                            <Input ></Input>
+                            <InputNumber
+                                style={{
+                                    width: '100%',
+                                }}
+                            ></InputNumber >
                         </Form.Item>
                     </Col>
                     <Col lg={3} md={6} sm={12} >
                         <Form.Item label="  وضعیت  " name="status" className='ant-input-group-addon'                          >
+                            <Select
+                                //mode="multiple"
+                                showSearch
+                                allowClear
+                                // style={{
+                                //     width: 200,
+                                // }}
+                                // placeholder="لطفا انتخاب نمایید"
+                                options={status}
+                            >
+                            </Select>
+                        </Form.Item>
+                    </Col>
+                    <Col lg={3} md={6} sm={12} >
+                        <Form.Item label="  اخربن کاربر ویرایش کننده  " name="lastUserModifiedBy" className='ant-input-group-addon'                          >
                             <Input ></Input>
                         </Form.Item>
                     </Col>
+                    <Col lg={3} md={6} sm={12} >
+                        <Form.Item label="اخرین تاریخ ویرایش رکورد" name="lastModifiedDate" className='ant-input-group-addon'
+                            rules={[
+                                {
+                                    required: true,
+                                    message: '    اخرین تاریخ ویرایش رکورد  ضروری است',
+                                },
+                            ]}>
+                            <Input ></Input>
+
+                        </Form.Item>
+                    </Col>
+
                     <Col lg={3} md={6} sm={12} >
                         <Form.Item label="  ضریب   " name="currencyCoefficient" className='ant-input-group-addon'
                             rules={[
@@ -314,7 +398,11 @@ const ExchangesDetail = () => {
                                     message: '    ضریب  ضروری است',
                                 },
                             ]}>
-                            <Input ></Input>
+                            <InputNumber
+                                style={{
+                                    width: '100%',
+                                }}
+                            ></InputNumber >
 
                         </Form.Item>
                     </Col>
@@ -332,19 +420,33 @@ const ExchangesDetail = () => {
                                     message: '    معادل یورو  ضروری است',
                                 },
                             ]}>
-                            <Input ></Input>
+                              <InputNumber placeholder=" کد " formatter={(value) => ` ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} 
+                               style={{
+                                width: '100%',
+                                }}
+                            ></InputNumber >
 
                         </Form.Item>
                     </Col>
                     <Col lg={3} md={6} sm={12} >
-                        <Form.Item label="  وضعیت احراز هویت موبایل مشتری   " name="mobileNumValidation" className='ant-input-group-addon'
+                        <Form.Item label="  احراز هویت موبایل مشتری" name="mobileNumValidation" className='ant-input-group-addon'
                             rules={[
                                 {
                                     required: true,
                                     message: '    وضعیت احراز هویت موبایل مشتری  ضروری است',
                                 },
                             ]}>
-                            <Input ></Input>
+                            <Select
+                                //mode="multiple"
+                                showSearch
+                                allowClear
+                                // style={{
+                                //     width: 200,
+                                // }}
+                                // placeholder="لطفا انتخاب نمایید"
+                                options={mobileNumValidation}
+                            >
+                            </Select>
 
                         </Form.Item>
                     </Col>
@@ -356,12 +458,22 @@ const ExchangesDetail = () => {
                                     message: '    منبع ارز  ضروری است',
                                 },
                             ]}>
-                            <Input ></Input>
+                            <Select
+                                //mode="multiple"
+                                showSearch
+                                allowClear
+                                // style={{
+                                //     width: 200,
+                                // }}
+                                // placeholder="لطفا انتخاب نمایید"
+                                options={currencySource}
+                            >
+                            </Select>
 
                         </Form.Item>
                     </Col>
                     <Col lg={3} md={6} sm={12} >
-                        <Form.Item label="شناسه معمامله دو صرافی" name="matchingExchangeRow" className='ant-input-group-addon'                          >
+                        <Form.Item label="شناسه معامله دو صرافی" name="matchingExchangeRow" className='ant-input-group-addon'                          >
                             <Input ></Input>
                         </Form.Item>
                     </Col>
@@ -377,12 +489,20 @@ const ExchangesDetail = () => {
                     </Col>
                     <Col lg={3} md={6} sm={12} >
                         <Form.Item label="معادل ریال" name="rialAmountCalc" className='ant-input-group-addon'                          >
-                            <Input ></Input>
+                            <InputNumber placeholder=" کد " formatter={(value) => ` ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                style={{
+                                    width: '100%',
+                                }}
+                            ></InputNumber >
                         </Form.Item>
                     </Col>
                     <Col lg={3} md={6} sm={12} >
                         <Form.Item label="معادل دلار  " name="dollarAmount" className='ant-input-group-addon'                          >
-                            <Input ></Input>
+                            <InputNumber placeholder=" کد " formatter={(value) => ` ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                style={{
+                                    width: '100%',
+                                }}
+                            ></InputNumber >
                         </Form.Item>
                     </Col>
                     <Col lg={3} md={6} sm={12} >

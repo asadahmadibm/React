@@ -7,8 +7,8 @@ const ExchangeReport = () => {
     const [transactionType] = useState([{ indexField: 1, valueField: "خرید " }, { indexField: 2, valueField: "فروش" }]);
     const [customerType] = useState([{ indexField: 1, valueField: "حقیقی " }, { indexField: 2, valueField: "حقوقی" }, { indexField: 3, valueField: "تابعه خارجی" }]);
     const [nationalIdValidation] = useState([{ indexField: 0, valueField: "  استعلام نشده " }, { indexField: 1, valueField: "معتبر  " }, { indexField: 2, valueField: " نامعتبر" }, { indexField: 3, valueField: " معتبر" }, { indexField: 4, valueField: " معتبر" }, { indexField: 5, valueField: " معتبر" }, { indexField: 6, valueField: " معتبر" }, { indexField: 255, valueField: "" }]);
-    const [status] = useState([{ indexField: 0, valueField: "معتبر " }, { indexField: 1, valueField: "استفاده شده" }, { indexField: 2, valueField: "باطل شده" }]);
-    const [mobileNumValidation] = useState([{ indexField: 0, valueField: "استعلام نشده " }, { indexField: 1, valueField: " معتبر" }, { indexField: 2, valueField: "نامعتبر" }], { indexField: 3, valueField: "نامشخص" });
+    const [statusType] = useState([{ indexField: 0, valueField: "معتبر " }, { indexField: 1, valueField: "استفاده شده" }, { indexField: 2, valueField: "باطل شده" }]);
+    const [mobileNumValidation] = useState([{ indexField: 0, valueField: "استعلام نشده " }, { indexField: 1, valueField: " معتبر" }, { indexField: 2, valueField: "نامعتبر" }, { indexField: 3, valueField: "نامشخص" }]);
     const [currencySource] = useState([{ indexField: 1, valueField: "منابع داخلی " }, { indexField: 2, valueField: "منابع بانک مرکزی" }, { indexField: 3, valueField: " از محل خرید از بازار متشکل ارزی ایران" }, { indexField: 4, valueField: " از محل خرید از بازار متشکل ارزی ایران - صادرات" }]);
 
 
@@ -86,10 +86,10 @@ const ExchangeReport = () => {
         { field: 'refTrackingCode', sortable: true, headerName: "شناسه رکورد ابطال شده  ", filter: 'agNumberColumnFilter', width: 170 },
         {
             field: 'status', sortable: true, headerName: "وضعیت ", filter: 'agSetColumnFilter', width: 130,
-            valueFormatter: params => getEnumValue(params.value, status),
+            valueFormatter: params => getEnumValue(params.value, statusType),
             filterParams: {
-                valueFormatter: params => getEnumValue(params.value, status), //getEnumValue(Number(params.value), paymentMethod),
-                values: (params) => { params.success(status.map(item => item.indexField)) }
+                valueFormatter: params => getEnumValue(params.value, statusType), //getEnumValue(Number(params.value), paymentMethod),
+                values: (params) => { params.success(statusType.map(item => item.indexField)) }
             }
         },
         { field: 'lastUserModifiedBy', sortable: true, headerName: "اخربن کاربر ویرایش کننده ", filter: 'agTextColumnFilter', width: 170 },

@@ -161,3 +161,12 @@ font-family: 'IRANSans' !important
 :where(.css-dev-only-do-not-override-1n7nwfa).ant-input-disabled, :where(.css-dev-only-do-not-override-1n7nwfa).ant-input[disabled] {
   color: black;
 }
+
+.ant-input-number-input-wrap {
+	margin: 2px;
+    height: 26px;
+	}
+
+  .ant-select-selection-item {
+    color: black;
+  }
