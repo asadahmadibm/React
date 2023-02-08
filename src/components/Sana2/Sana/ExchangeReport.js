@@ -149,7 +149,7 @@ const ExchangeReport = () => {
             }
         },
         { field: 'lastUserModifiedBy', sortable: true, headerName: "اخربن کاربر ویرایش کننده ", filter: 'agTextColumnFilter', width: 170 },
-        { field: 'lastModifiedDate', sortable: true, headerName: "اخرین تاریخ ویرایش رکورد ", filter: 'agNumberColumnFilter', width: 170, valueFormatter: params => moment(new Date(params.value).toLocaleDateString('en-US'), 'MM/DD/YYYY').isValid() == true ? moment(new Date(params.value).toLocaleDateString('en-US'), 'MM/DD/YYYY').locale('fa').format('YYYY/MM/DD') : "" },
+        { field: 'lastModifiedDate', sortable: true, headerName: "اخرین تاریخ ویرایش  ", filter: 'agNumberColumnFilter', width: 170, valueFormatter: params => moment(new Date(params.value).toLocaleDateString('en-US'), 'MM/DD/YYYY').isValid() == true ? moment(new Date(params.value).toLocaleDateString('en-US'), 'MM/DD/YYYY').locale('fa').format('YYYY/MM/DD') : "" },
         { field: 'currencyCoefficient', sortable: true, headerName: "ضریب ", filter: 'agNumberColumnFilter', width: 170 },
         {
             field: 'currencyUseId', sortable: true, headerName: "سرفصل ", filter: 'agSetColumnFilter', width: 200,
@@ -161,7 +161,7 @@ const ExchangeReport = () => {
         },
         { field: 'euroAmount', sortable: true, headerName: "معادل یورو  ", filter: 'agNumberColumnFilter', width: 170, valueFormatter: params => Number(params.value).toLocaleString() },
         {
-            field: 'mobileNumValidation', sortable: true, headerName: "وضعیت احراز هویت موبایل مشتری ", filter: 'agSetColumnFilter', width: 130,
+            field: 'mobileNumValidation', sortable: true, headerName: "وضعیت احراز هویت موبایل  ", filter: 'agSetColumnFilter', width: 130,
             valueFormatter: params => getEnumValue(params.value, mobileNumValidation),
             filterParams: {
                 valueFormatter: params => getEnumValue(params.value, mobileNumValidation), //getEnumValue(Number(params.value), paymentMethod),

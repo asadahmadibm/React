@@ -82,10 +82,13 @@ code {
 .ant-input-group-addon{
   font-family:  "IRANSans" !important;
   /* background-color: aliceblue !important; */
-  
-  
+  }
+.ant-picker-header-view {
+  font-family:  "IRANSans" !important;
 }
-
+.ant-picker-now-btn {
+  font-family:  "IRANSans" !important;
+}
 .ant-form-item-label{
   font-family:  "IRANSans" !important;
   border-right: 1px solid #ccc!important;
@@ -161,6 +164,9 @@ font-family: 'IRANSans' !important
 :where(.css-dev-only-do-not-override-1n7nwfa).ant-input-disabled, :where(.css-dev-only-do-not-override-1n7nwfa).ant-input[disabled] {
   color: black;
 }
+:where(.css-dev-only-do-not-override-1n7nwfa).ant-picker .ant-picker-input >input[disabled] {
+  color: black;
+}
 .ant-card-body {
   padding: 10px 10px !important;
 }
@@ -214,3 +220,48 @@ font-family: 'IRANSans' !important
   font-family:  "IRANSans" !important;
   font-size: smaller !important;
 } 
+
+.ant-picker {
+  font-family:  "IRANSans" !important;
+}
+
+.ant-picker-month-btn {
+  font-family:  "IRANSans" !important;
+}
+.ant-picker-today-btn {
+  font-family:  "IRANSans" !important;
+}
+.ant-picker-content {
+  font-family:  "IRANSans" !important;
+}
+ .trigger {
+  padding: 0 24px;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.rmdp-input {
+  margin: 0 !important;
+  height: 32px !important;
+  border-radius: 5px 0px 0px 5px !important;
+  width: 100%;
+}
+
+.rmdp-container {
+  border-radius: 5px 0px 0px 5px !important;
+  font-family:  "IRANSans" !important;
+  width: 100%;
+}
+
