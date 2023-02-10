@@ -18,6 +18,7 @@ import RialiPaymentDetail from './Sana2/Sana/RialiPaymentDetail';
 import CompanyDetail from './CompanyDetail';
 import ExchangeReport from './Sana2/Sana/ExchangeReport';
 import ExchangesDetail from './Sana2/Sana/ExchangesDetail';
+import EmployeeDetail from './Local/EmployeeDetail'
 import '../index.css'
 
 import { Layout, Menu, theme, Button } from 'antd';
@@ -46,6 +47,7 @@ const items = [
         getItem('جزییات ', '8'),
     ]),
     getItem('نیما', 'sub2', "", [getItem('درحواستهای فعال', '6')]),
+    getItem('لوکال', 'sub3', "", [getItem('جزییات ', '10')]),
 ];
 const MainLayoutNew = () => {
     const navigate = useNavigate();
@@ -73,6 +75,8 @@ const MainLayoutNew = () => {
             navigate("/CompanyDetail")
         if (e.key === "9")
             navigate("/ExchangeReport")
+            if (e.key === "10")
+            navigate("/EmployeeDetail")
     };
 
     const [current, setCurrent] = useState('mail');
@@ -131,7 +135,7 @@ const MainLayoutNew = () => {
                         <Route exact path='/CompanyDetail' element={<CompanyDetail />} />
                         <Route exact path='/ExchangeReport' element={<ExchangeReport />} />
                         <Route exact path='/ExchangesDetail' element={<ExchangesDetail />} />
-
+                        <Route exact path='/EmployeeDetail' element={<EmployeeDetail />} />
 
                     </Routes>
                 </Content>
