@@ -2,7 +2,6 @@ import react, { useState, useMemo, useCallback, useRef } from 'react'
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from "react-router-dom";
-import moment from 'jalali-moment';
 import { AutoComplete, Checkbox, Button, Switch, InputNumber, Space, Select, Form, Input, message } from 'antd';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -15,8 +14,23 @@ import fa_IR from "antd/lib/locale/fa_IR";
 import en_US from "antd/lib/locale/en_US";
 import dayjs from 'dayjs'
 import 'react-toastify/dist/ReactToastify.css';
+import moment, { locale } from 'jalali-moment';
+
+const DatePickerCustom = ({ value, onChange }) => {
+    return <DatePicker showTime allowClear={false} value={value != undefined ? dayjs(value) : ""} onChange={onChange} format="HH:mm:ss YYYY-MM-DD " />
+};
+
 
 const CompanyDetail = () => {
+
+    const onchangeDate = (value) => {
+        let x = moment(dayjs(value, { jalali: true }).format('YYYY-MM-DD hh:mm:ss'), 'jYYYY/jMM/jDD hh:mm:ss').locale('en').format('YYYY-MM-DD hh:mm:ss')
+        form.setFieldValue("registerDate", x);
+        console.log(x);
+
+    }
+
+    dayjs.calendar('jalali');
     const dateFormat = 'YYYY/MM/DD';
     const [componentDisabled, setComponentDisabled] = useState(true);
     const navigate = useNavigate();
@@ -56,6 +70,11 @@ const CompanyDetail = () => {
         console.log(values);
         //    navigate("/RialiPaymentDetail", { state: { transactionId: values.companycode } })
     };
+
+    const onSave = () => {
+        console.log(form.getFieldsValue());
+    }
+
     const onFill = () => {
 
 
@@ -73,7 +92,8 @@ const CompanyDetail = () => {
             moaref: "معرف",
             selectivegroup: "گروه های انتخابی",
             buyer: "خریدار",
-            registrator: "اسعد احمدی"
+            registrator: "اسعد احمدی",
+            registerDate :moment(dayjs( new Date(), { jalali: true }).format('YYYY-MM-DD hh:mm:ss'), 'jYYYY/jMM/jDD hh:mm:ss').locale('en').format('YYYY-MM-DD hh:mm:ss')
 
         });
     };
@@ -88,7 +108,7 @@ const CompanyDetail = () => {
                 >
                     Form disabled
                 </Checkbox>
-                <Button type="primary" htmlType="submit" >ذخیره  </Button>
+                <Button type="primary" htmlType="submit"  onClick={onSave}>ذخیره  </Button>
                 <Button type="primary" danger htmlType="button" onClick={onFill}>پر نمودن فرم </Button>
                 <Button htmlType="button" onClick={onReset}>  پاکسازی فرم </Button>
             </Space>
@@ -239,19 +259,8 @@ const CompanyDetail = () => {
                     </Col>
                     <Col lg={3} md={6} sm={12} >
                         <Form.Item label=" تاریخ ثبت" name="registerDate">
-                            {/* <DatePicker  format={dateFormat} /> */}
-                            <ConfigProvider locale={fa_IR} direction="rtl">
-                                <JalaliLocaleListener />
-                                <DatePickerJalali onChange={(date) => {
-                                    let xx = "";
-                                    if (date != null) {
-                                        xx = moment(new Date(date).toLocaleDateString('en-US'), 'MM/DD/YYYY').locale('fa').format('YYYY/MM/DD')
-                                    }
-                                    form.setFieldsValue({
-                                        registerDate: xx
-                                    })
-                                }} />
-                            </ConfigProvider>
+                        <DatePickerCustom onChange={onchangeDate} />
+                          
                         </Form.Item>
                     </Col>
                 </Row>
