@@ -86,6 +86,12 @@ code {
 .ant-picker-header-view {
   font-family:  "IRANSans" !important;
 }
+.ant-checkbox-input {
+  font-family:  "IRANSans" !important;
+}
+:where(.css-dev-only-do-not-override-1n7nwfa).ant-checkbox+span {
+  font-family: 'IRANSans' !important;
+}
 .ant-picker-now-btn {
   font-family:  "IRANSans" !important;
 }

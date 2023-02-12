@@ -11,6 +11,7 @@ import PropTypes from 'prop-types'
 import { ToastContainer, toast } from 'react-toastify';
 import { CommentOutlined, CustomerServiceOutlined } from '@ant-design/icons';
 import { AutoComplete, Dropdown, Card, Checkbox, Button, Switch, InputNumber, Space, Select, Form, Input, message } from 'antd';
+import { ExportToExcel } from '../ExportToExcel/ExportToExcel';
 
 const AdminGrid = (props) => {
     const { } = props
@@ -262,6 +263,7 @@ const AdminGrid = (props) => {
         PageIndex: 1,
         PageSize: 20
     });
+
     const [gridApi, setGridApi] = useState(null);
     const perPage = 20;
 
@@ -354,38 +356,41 @@ const AdminGrid = (props) => {
         }
         navigate("/" + props.pageDetail, { state: { id: selectedData[0].id } })
     }
-    return (
 
-        <Card type="inner" title={props.title} size="default" extra={
-            <Space >
-                <Button type="primary" htmlType="button" onClick={onFill}>جزییات </Button>
-            </Space>
+return (
 
-        }>
-            <div style={{ height: "76vh", width: "100%" }}>
-                <AgGridReact
-                    pagination="true"
-                    rowModelType={'infinite'}
-                    paginationPageSize={perPage}
-                    cacheBlockSize={perPage}
-                    onGridReady={onGridReady}
-                    className="ag-theme-alpine"
-                    enableRtl="true"
-                    headerHeight="30"
-                    rowHeight="30"
-                    rowSelection={"single"}
-                    enableRangeSelection="true"
-                    localeText={localeText}
-                    defaultColDef={defaultColDef}
-                    columnDefs={props.columnDefs}
-                    multiSortActive={true}
+    <Card type="inner" title={props.title} size="default" extra={
+        <Space >
+            <Button type="primary" htmlType="button" onClick={onFill}>جزییات </Button>
+            {/* <Button type="primary" htmlType="button" onClick={onExport}>ارسال به اکسل </Button> */}
+            <ExportToExcel fileName={props.apiname} serverRowsRequest={serverRowsRequest} />
+        </Space>
 
-                >
-                </AgGridReact>
-            </div>
-        </Card>
+    }>
+        <div style={{ height: "76vh", width: "100%" }}>
+            <AgGridReact
+                pagination="true"
+                rowModelType={'infinite'}
+                paginationPageSize={perPage}
+                cacheBlockSize={perPage}
+                onGridReady={onGridReady}
+                className="ag-theme-alpine"
+                enableRtl="true"
+                headerHeight="30"
+                rowHeight="30"
+                rowSelection={"single"}
+                enableRangeSelection="true"
+                localeText={localeText}
+                defaultColDef={defaultColDef}
+                columnDefs={props.columnDefs}
+                multiSortActive={true}
 
-    )
+            >
+            </AgGridReact>
+        </div>
+    </Card>
+
+)
 }
 
 AdminGrid.propTypes = {

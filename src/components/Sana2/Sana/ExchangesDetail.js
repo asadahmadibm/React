@@ -8,7 +8,11 @@ import Col from 'react-bootstrap/Col';
 import { AutoComplete, Dropdown, Card, Checkbox, Button, Switch, InputNumber, Space, Select, Form, Input, message, DatePicker } from 'antd';
 import axios from 'axios';
 import dayjs from 'dayjs'
-import moment from 'jalali-moment';
+import moment, { locale } from 'jalali-moment';
+
+const DatePickerCustom = ({ value, onChange }) => {
+    return <DatePicker allowClear={false} value={value != undefined ? dayjs(value) : ""} onChange={onChange} format="HH:mm:ss YYYY-MM-DD " />
+};
 
 // const DatePickerCustom = ({ value, onChange }) => {
 //     return <DatePicker value={value!=undefined ? dayjs(value) : ""} onChange={onChange} format="HH:mm:ss YYYY-MM-DD "/>
@@ -27,9 +31,18 @@ const ExchangesDetail = () => {
 
     }
 
+    const onchangelastModifiedDate=(value)=>{
+        let x= moment(dayjs(value,{jalali:true}).format('YYYY-MM-DD hh:mm:ss'), 'jYYYY/jMM/jDD hh:mm:ss').locale('en').format('YYYY-MM-DD hh:mm:ss')
+        form.setFieldValue("lastModifiedDate",x);
+
+    }
+
+
+    
+
     dayjs.calendar('jalali');
 
-    const [componentDisabled, setComponentDisabled] = useState(false);
+    const [componentDisabled, setComponentDisabled] = useState(true);
     const navigate = useNavigate();
     let params = useLocation();
     const [form] = Form.useForm();
@@ -92,16 +105,20 @@ const ExchangesDetail = () => {
         console.log(form.getFieldsValue());
     }
 
+    const onEdit=(e)=>{
+        setComponentDisabled(!componentDisabled)
+    }
+
     return (
 
         <Card type="inner" title="جزییات خرید و فروش" size="default" extra={
             <Space wrap>
                 <Checkbox
-                    checked={componentDisabled}
-                    onChange={(e) => setComponentDisabled(e.target.checked)}>
-                    Form disabled
+                    checked={!componentDisabled}
+                    onChange={(e) => setComponentDisabled(!e.target.checked)}>
+                    ویرایش فرم
                 </Checkbox>
-
+                {/* <Button danger htmlType="submit" onClick={onEdit} >ویرایش فرم  </Button> */}
                 <Button type="primary" htmlType="submit" onClick={onSave} >ذخیره  </Button>
                 <Button htmlType="button" onClick={onReset}>  پاکسازی فرم </Button>
                 <Button htmlType="button" onClick={onReturn}>   بازگشت </Button>
@@ -190,24 +207,20 @@ const ExchangesDetail = () => {
                             <Input ></Input>
                         </Form.Item>
                     </Col>
-                    <Col lg={3} md={6} sm={12} hidden={true}>
-                        <Form.Item label=" تاریخ معامله " name="date" className='ant-input-group-addon' hidden={true}
+                    <Col lg={3} md={6} sm={12} >
+                        <Form.Item label=" تاریخ معامله " name="date" className='ant-input-group-addon' 
                             rules={[
                                 {
                                     required: true,
                                     message: ' تاریخ معامله  ضروری است',
                                 },
                             ]}>
-                            <Input  ></Input>
+                            <DatePickerCustom onChange={onchangeDate} />
 
                         </Form.Item>
                         
                     </Col>
-                     <Col lg={3} md={6} sm={12} >
-                        <Form.Item label=" تاریخ معامله"  className='ant-input-group-addon'                          >
-                            <DatePicker defaultValue={ddd} onChange={onchangeDate} format="YYYY-MM-DD HH:mm:ss"/>
-                        </Form.Item>
-                    </Col>
+
                     <Col lg={3} md={6} sm={12} >
                         <Form.Item label="  کد ارز " name="nationalId" className='ant-input-group-addon'
                             rules={[
@@ -445,7 +458,7 @@ const ExchangesDetail = () => {
                                     message: '    اخرین تاریخ ویرایش  ضروری است',
                                 },
                             ]}>
-                            <Input ></Input>
+                             <DatePickerCustom onChange={onchangelastModifiedDate} />
 
                         </Form.Item>
                     </Col>
@@ -554,7 +567,7 @@ const ExchangesDetail = () => {
                     </Col>
                     <Col lg={3} md={6} sm={12} >
                         <Form.Item label="  تاریخ ایجاد  " name="createDate" className='ant-input-group-addon'                          >
-                            <Input ></Input>
+                            <DatePickerCustom onChange={onchangeCreateDate} />
                         </Form.Item>
                     </Col>
                     <Col lg={3} md={6} sm={12} >
@@ -580,23 +593,6 @@ const ExchangesDetail = () => {
                             <Input ></Input>
                         </Form.Item>
                     </Col>
-                    <Col lg={3} md={6} sm={12} >
-                        <Form.Item label=" تاریخ ایجاد" className='ant-input-group-addon'                          >
-                            {/* <DatePicker 
-                            //   defaultValue={dayjs("1402/01/01", {jalali:true})}
-                            //  defaultValue={dayjs(form.getFieldValue("createDate"))}
-                              //defaultValue={dayjs(form.getFieldValue("birthDate"), {jalali:true})}
-                              defaultValue={()=>{
-                                console.log(form.getFieldValue("birthDate"));
-                                const date = dayjs("1400-11-11", { jalali: true });
-                                return date;
-                              }}
-                            ></DatePicker> */}
-                            {/* <DatePickerCustom /> */}
-                            <DatePicker showTime defaultValue={dayjs("1402/01/01", {jalali:true})} onChange={onchangeCreateDate} format="YYYY-MM-DD HH:mm:ss"/>
-                        </Form.Item>
-                    </Col>
-                   
                 </Row>
 
                 {/* </Space> */}

@@ -47,7 +47,7 @@ const items = [
         getItem('جزییات ', '8'),
     ]),
     getItem('نیما', 'sub2', "", [getItem('درحواستهای فعال', '6')]),
-    getItem('لوکال', 'sub3', "", [getItem('جزییات ', '10')]),
+    // getItem('لوکال', 'sub3', "", [getItem('جزییات ', '10')]),
 ];
 const MainLayoutNew = () => {
     const navigate = useNavigate();
