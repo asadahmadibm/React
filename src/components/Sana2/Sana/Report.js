@@ -328,6 +328,7 @@ const Report = () => {
             .then(res => {
               // console.log(res);
               params.successCallback(res.data.data.list, res.data.data.totalCount);
+              document.body.classList.remove('loading-indicator');
             }).catch(err => {
               params.successCallback([], 0);
             });

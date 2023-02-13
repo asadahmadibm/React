@@ -44,6 +44,7 @@ export const ExportToExcel = ({ fileName, serverRowsRequest }) => {
             console.log(res.data);
             FileSaver.saveAs(res.data, fileName + fileExtension);
             //fileDownload(res.data.data, fileName+".xls");
+            document.body.classList.remove('loading-indicator');
 
 
         }).catch(err => {

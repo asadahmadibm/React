@@ -334,7 +334,7 @@ const AdminGrid = (props) => {
                         .then(res => {
 
                             params.successCallback(res.data.data.list, res.data.data.totalCount);
-
+                            document.body.classList.remove('loading-indicator');
                         }).catch(err => {
                             params.successCallback([], 0);
                             toast.warn("اشکال در فراخوانی اطلاعات");
