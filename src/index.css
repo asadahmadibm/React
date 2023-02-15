@@ -274,3 +274,11 @@ font-family: 'IRANSans' !important
   width: 100%;
 }
 
+.site-tree-search-value {
+  color: #f50;
+}
+
+.ant-tree-list-holder {
+  overflow: scroll;
+  height: 70vh;
+}

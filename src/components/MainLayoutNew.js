@@ -16,6 +16,8 @@ import AgGridPagination from './AgGridPagination'
 import RialiPaymentReport from './Sana2/Sana/RialiPaymentReport';
 import RialiPaymentDetail from './Sana2/Sana/RialiPaymentDetail';
 import CompanyDetail from './Local/CompanyDetail';
+import CompanyReport from './Local/CompanyReport';
+import Region from './Local/Region';
 import ExchangeReport from './Sana2/Sana/ExchangeReport';
 import ExchangesDetail from './Sana2/Sana/ExchangesDetail';
 import EmployeeDetail from './Local/EmployeeDetail'
@@ -48,7 +50,9 @@ const items = [
     getItem('نیما', 'sub2', "", [getItem('درحواستهای فعال', '6')]),
     getItem('مدیریت ارتباط با مشتری', 'sub3', "", [
         // getItem('جزییات ', '10'),
+        getItem('لیست شرکت ', '11'),
         getItem('جزییات شرکت ', '8'),
+        getItem('لیست نواحی ', '12'),
     ]),
 ];
 const MainLayoutNew = () => {
@@ -79,6 +83,11 @@ const MainLayoutNew = () => {
             navigate("/ExchangeReport")
             if (e.key === "10")
             navigate("/EmployeeDetail")
+            if (e.key === "11")
+            navigate("/CompanyReport")
+            if (e.key === "12")
+            navigate("/Region")
+            
     };
 
     const [current, setCurrent] = useState('mail');
@@ -135,6 +144,8 @@ const MainLayoutNew = () => {
                         <Route exact path='/RialiPaymentDetail' element={<RialiPaymentDetail />} />
                         <Route exact path='/NimaRequest' element={<NimaRequest />} />
                         <Route exact path='/CompanyDetail' element={<CompanyDetail />} />
+                        <Route exact path='/CompanyReport' element={<CompanyReport />} />
+                        <Route exact path='/Region' element={<Region />} />
                         <Route exact path='/ExchangeReport' element={<ExchangeReport />} />
                         <Route exact path='/ExchangesDetail' element={<ExchangesDetail />} />
                         <Route exact path='/EmployeeDetail' element={<EmployeeDetail />} />
