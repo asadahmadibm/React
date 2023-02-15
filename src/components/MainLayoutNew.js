@@ -15,7 +15,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import AgGridPagination from './AgGridPagination'
 import RialiPaymentReport from './Sana2/Sana/RialiPaymentReport';
 import RialiPaymentDetail from './Sana2/Sana/RialiPaymentDetail';
-import CompanyDetail from './CompanyDetail';
+import CompanyDetail from './Local/CompanyDetail';
 import ExchangeReport from './Sana2/Sana/ExchangeReport';
 import ExchangesDetail from './Sana2/Sana/ExchangesDetail';
 import EmployeeDetail from './Local/EmployeeDetail'
@@ -44,10 +44,12 @@ const items = [
         getItem(' گزارش آماری ', '4'),
         getItem('گزارش از پرداختهای ریالی ', '7'),
         getItem('گزارش خرید و فروش ارز ', '9'),
-        getItem('جزییات ', '8'),
     ]),
     getItem('نیما', 'sub2', "", [getItem('درحواستهای فعال', '6')]),
-    // getItem('لوکال', 'sub3', "", [getItem('جزییات ', '10')]),
+    getItem('مدیریت ارتباط با مشتری', 'sub3', "", [
+        // getItem('جزییات ', '10'),
+        getItem('جزییات شرکت ', '8'),
+    ]),
 ];
 const MainLayoutNew = () => {
     const navigate = useNavigate();

@@ -62,6 +62,7 @@ const ExchangesDetail = () => {
             axios.get("/Exchanges?id=" + Number(params.state.id))
                 .then(res => {
                     form.setFieldsValue(res.data.data[0]);
+                    document.body.classList.remove('loading-indicator');
                 }).catch(err => {
                     toast.warn("اشکال در فراخوانی اتطلاعات");
 
