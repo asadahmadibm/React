@@ -74,7 +74,7 @@ code {
 }
 .ant-input  {
   font-family:  "IRANSans" !important;
-  border-radius: 5px 0px 0px 5px !important;
+   /* border-radius: 5px 0px 0px 5px !important; */
 }
 .ant-btn {
   font-family:  "IRANSans" !important;
@@ -100,13 +100,21 @@ code {
 }
 .ant-form-item-label{
   font-family:  "IRANSans" !important;
-  border-right: 1px solid #ccc!important;
+  /* border-right: 1px solid #ccc!important;
   border-top: 1px solid #ccc!important;
   border-bottom: 1px solid #ccc!important;
   border-radius: 0px 5px 5px 0px;
   height: 32px !important;
-  background-color: aliceblue !important;
+  background-color: aliceblue !important; */
   
+}
+
+.ant-tree-title {
+  font-family:  "IRANSans" !important;
+}
+
+.ant-select-tree-title {
+  font-family:  "IRANSans" !important;
 }
 
 .ant-select-selection-placeholder {
@@ -122,15 +130,15 @@ code {
   margin-right: 10px;
 }
 .ant-select-selector{
-  border-radius: 5px 0px 0px 5px !important;
+   /* border-radius: 5px 0px 0px 5px !important; */
 }
 
 .ant-picker {
-  border-radius: 5px 0px 0px 5px !important;
+   /* border-radius: 5px 0px 0px 5px !important; */
 }
 
 .ant-input-number {
-  border-radius: 5px 0px 0px 5px !important;
+   /* border-radius: 5px 0px 0px 5px !important; */
   font-family:  "IRANSans" !important;
 }
 .ant-layout-content {
@@ -261,15 +269,18 @@ font-family: 'IRANSans' !important
   background: rgba(255, 255, 255, 0.3);
 }
 
+.site-tree-search-value {
+  color: #f50;
+}
 .rmdp-input {
   margin: 0 !important;
   height: 32px !important;
-  border-radius: 5px 0px 0px 5px !important;
+   /* border-radius: 5px 0px 0px 5px !important; */
   width: 100%;
 }
 
 .rmdp-container {
-  border-radius: 5px 0px 0px 5px !important;
+   /* border-radius: 5px 0px 0px 5px !important; */
   font-family:  "IRANSans" !important;
   width: 100%;
 }
