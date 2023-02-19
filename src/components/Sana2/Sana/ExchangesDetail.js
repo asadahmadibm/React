@@ -130,6 +130,12 @@ const ExchangesDetail = () => {
                 {/* <Space size={[8, 45]} wrap> */}
                 <Row>
                     <Col lg={6} md={12} sm={12} >
+                       
+                    </Col>
+                </Row>
+                <Space direction="vertical"
+                    size="small">
+                        <Space align="start">
                         <Form.Item label="کد" name="id" className='ant-input-group-addon'
                             rules={[
                                 {
@@ -148,21 +154,7 @@ const ExchangesDetail = () => {
                             ></InputNumber >
 
                         </Form.Item>
-                    </Col>
-                </Row>
-                <Space direction="vertical"
-                    size="small">
-                    <Card
-                        title="اطلاعات صرافی"
-                        size="small"
-                    // bordered={false}
-                    // style={{
-                    //   width: 300,
-                    // }}
-                    >
-                        <Row>
-                            <Col lg={3} md={6} sm={12} >
-                                <Form.Item label="  کد صرافی " name="sarafiId" className='ant-input-group-addon'
+                        <Form.Item label="  کد صرافی " name="sarafiId" className='ant-input-group-addon'
                                     rules={[
                                         {
                                             required: true,
@@ -176,21 +168,9 @@ const ExchangesDetail = () => {
                                     ></InputNumber >
 
                                 </Form.Item>
-                            </Col>
-                            <Col lg={3} md={6} sm={12} >
-                                <Form.Item label=" نام کاربری  " name="username" className='ant-input-group-addon'
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: '',
-                                        },
-                                    ]}>
-                                    <Input ></Input>
+                       
+                        </Space>
 
-                                </Form.Item>
-                            </Col>
-                        </Row>
-                    </Card>
 
                     <Card
                         title="اطلاعات پیگیری"
@@ -227,6 +207,18 @@ const ExchangesDetail = () => {
 
                             </Col>
                             <Col lg={3} md={6} sm={12} >
+                                <Form.Item label=" نام کاربری  " name="username" className='ant-input-group-addon'
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: '',
+                                        },
+                                    ]}>
+                                    <Input ></Input>
+
+                                </Form.Item>
+                            </Col>
+                            <Col lg={3} md={6} sm={12} >
                                 <Form.Item label="  اخربن کاربر ویرایش کننده  " name="lastUserModifiedBy" className='ant-input-group-addon'                          >
                                     <Input ></Input>
                                 </Form.Item>
@@ -237,7 +229,7 @@ const ExchangesDetail = () => {
                                 </Form.Item>
                             </Col>
                             <Col lg={3} md={6} sm={12} >
-                                <Form.Item label="اخرین تاریخ ویرایش " name="lastModifiedDate" className='ant-input-group-addon'
+                                <Form.Item label="آخرین ت ویرایش " name="lastModifiedDate" className='ant-input-group-addon'
                                     rules={[
                                         {
                                             required: true,

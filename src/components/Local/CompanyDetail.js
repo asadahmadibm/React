@@ -417,20 +417,20 @@ const CompanyDetail = () => {
     };
 
 
-    useEffect(() => {
-        axios.post("/CRM_Region")
-            .then(res => {
-                //    form.setFieldsValue(res.data.data[0]);
-                console.log(res.data.data.list);
-                document.body.classList.remove('loading-indicator');
-            }).catch(err => {
-                toast.warn("اشکال در فراخوانی اتطلاعات");
-                document.body.classList.remove('loading-indicator');
+    // useEffect(() => {
+    //     axios.post("/CRM_Region")
+    //         .then(res => {
+    //             //    form.setFieldsValue(res.data.data[0]);
+    //             console.log(res.data.data.list);
+    //             document.body.classList.remove('loading-indicator');
+    //         }).catch(err => {
+    //             toast.warn("اشکال در فراخوانی اتطلاعات");
+    //             document.body.classList.remove('loading-indicator');
 
-            }).finally(() => {
-            });
+    //         }).finally(() => {
+    //         });
 
-    }, []);
+    // }, []);
 
 
 
@@ -444,9 +444,9 @@ const CompanyDetail = () => {
                 >
                     Form disabled
                 </Checkbox>
-                <Button type="primary" htmlType="submit" onClick={onSave}>ذخیره  </Button>
-                <Button type="primary" danger htmlType="button" onClick={onFill}>پر نمودن فرم </Button>
-                <Button htmlType="button" onClick={onReset}>  پاکسازی فرم </Button>
+                <Button type='primary'  htmlType="submit" onClick={onSave}>ذخیره  </Button>
+                <Button  danger htmlType="button" onClick={onFill}>پر نمودن فرم </Button>
+                <Button  htmlType="button" onClick={onReset}>  پاکسازی فرم </Button>
             </Space>
 
         }>
@@ -635,6 +635,12 @@ const CompanyDetail = () => {
                                 {
                                     key: '1',
                                     label: `محصولات`,
+                                    // style:{
+                                    //     width: '100vw',
+                                    //     height: '100vh',
+                                    //     textAlign: 'center',
+                                    //     background: 'rgba(0,255,0,0.02)',
+                                    //   },
                                     children:
                                         <Col lg={6} md={12} sm={12} >
                                             <div style={{ height: "300px", width: "100%" }}>

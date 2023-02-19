@@ -93,7 +93,9 @@ const MainLayoutNew = () => {
     const [current, setCurrent] = useState('mail');
     return (
         <Layout>
-            <Sider trigger={null} collapsible collapsed={collapsed}>
+            <Sider trigger={null} collapsible collapsed={collapsed} 
+            reverseArrow={true}
+            >
                 <div className='logo'></div>
                 <Menu onClick={onClick}
                     theme="dark"
@@ -103,7 +105,7 @@ const MainLayoutNew = () => {
                 />
             </Sider>
             <Layout className="site-layout">
-                <Header
+                {/* <Header
                     style={{
                         padding: 0,
                         height: 50,
@@ -124,13 +126,14 @@ const MainLayoutNew = () => {
                             }}
                         >ورود به سیستم </Button>
                     </Space>
-                </Header>
+                </Header> */}
                 <Content
                     style={{
                         margin: '8px 8px',
                         padding: '15px 20px',
-                        minHeight: 650,
-                        background: colorBgContainer,
+                        //minHeight: 650,
+                        height: '90vh',
+                        background: 'white',
                     }}
                 >
                     <Routes>
