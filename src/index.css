@@ -209,7 +209,7 @@ font-family: 'IRANSans' !important
 }
 
 .ant-input-group-addon  {
-  height: 25px !important;
+  height: 15px !important;
 }
 .ant-layout-header {
   background-color: #673ab7 !important;
@@ -293,3 +293,9 @@ font-family: 'IRANSans' !important
   overflow: scroll;
   height: 70vh;
 }
+
+/* @media (max-width: 575px)
+:where(.css-dev-only-do-not-override-1n7nwfa).ant-form .ant-form-item .ant-form-item-label, :where(.css-dev-only-do-not-override-1n7nwfa).ant-form .ant-form-item .ant-form-item-control {
+    flex: 0 0 100%;
+    max-width: 100%;
+} */

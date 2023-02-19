@@ -425,6 +425,7 @@ const CompanyDetail = () => {
                 document.body.classList.remove('loading-indicator');
             }).catch(err => {
                 toast.warn("اشکال در فراخوانی اتطلاعات");
+                document.body.classList.remove('loading-indicator');
 
             }).finally(() => {
             });
