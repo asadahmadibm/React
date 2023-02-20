@@ -56,6 +56,6 @@ export const ExportToExcel = ({ fileName, serverRowsRequest }) => {
     }
 
     return (
-        <Button type='primary' onClick={onClick}>ارسال به اکسل</Button>
+        <Button  type='primary' onClick={onClick}>ارسال به اکسل</Button>
     );
 };

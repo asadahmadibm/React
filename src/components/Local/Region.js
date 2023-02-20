@@ -209,7 +209,7 @@ const Region = () => {
     // ])
 
     return (
-        <Card type="inner" title="لیست  نواحی" size="default"  >
+        <Card type="inner" title="لیست  نواحی" size="default" className='padding0' >
             <div style={{ height: "76vh", width: "100%" }}>
                 <Row>
                     <Col lg={3} md={6} sm={12}>

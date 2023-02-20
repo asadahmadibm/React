@@ -436,7 +436,7 @@ const CompanyDetail = () => {
 
 
     return (
-        <Card type="inner" title="جزییات  شرکت" size="default" extra={
+        <Card type="inner" title="جزییات  شرکت" size="default" className='padding0' extra={
             <Space wrap>
                 <Checkbox
                     checked={componentDisabled}

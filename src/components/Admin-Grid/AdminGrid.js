@@ -281,6 +281,7 @@ const AdminGrid = (props) => {
         };
     }, []);
     useEffect(() => {
+        console.log(props.height);
         if (gridApi) {
             // gridApi.sizeColumnsToFit();
             const dataSource = {
@@ -359,15 +360,18 @@ const AdminGrid = (props) => {
 
 return (
 
-    <Card type="inner" title={props.title} size="default" extra={
+    <Card type="inner" title={props.title} size="default" 
+    className="padding0"
+
+    extra={
         <Space >
-            <Button type="primary" htmlType="button" onClick={onFill}>جزییات </Button>
+            <Button type="primary"  htmlType="button" onClick={onFill}>جزییات </Button>
             {/* <Button type="primary" htmlType="button" onClick={onExport}>ارسال به اکسل </Button> */}
             <ExportToExcel fileName={props.apiname} serverRowsRequest={serverRowsRequest} />
         </Space>
 
     }>
-        <div style={{ height: "76vh", width: "100%" }}>
+        <div style={{ height: props.height ==undefined ? "76vh" : props.height , width: "100%" }}>
             <AgGridReact
                 pagination="true"
                 rowModelType={'infinite'}
@@ -388,7 +392,7 @@ return (
             >
             </AgGridReact>
         </div>
-    </Card>
+     </Card>
 
 )
 }
