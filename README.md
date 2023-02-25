@@ -196,6 +196,7 @@ if it not work try
 
 	npm install --save ag-grid-community
 	npm install --save ag-grid-react
+	npm install --save ag-grid-enterprise
 	
 	import { AgGridReact } from 'ag-grid-react';
 	import 'ag-grid-community/styles/ag-grid.css';
