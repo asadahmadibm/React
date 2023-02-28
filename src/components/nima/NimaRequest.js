@@ -15,6 +15,8 @@ const NimaRequest = () => {
         { field: 'requestCode', sortable: true, headerName: "کد درخواست ", filter: 'agNumberColumnFilter', width: 120 },
         { field: 'sabteSefareshCode', sortable: true, headerName: "کد ثبت سفارش", filter: 'agNumberColumnFilter', width: 138 },
         { field: 'currencyName', sortable: true, headerName: "نام ارز", filter: 'agTextColumnFilter', width: 170 },
+        { field: 'SelectedExchange', sortable: true, headerName: " کد صرافی تعیین شده توسط وارد کننده", filter: 'agTextColumnFilter', width: 170 },
+        
         { field: 'amount', sortable: true, headerName: "مبلغ", filter: 'agNumberColumnFilter', width: 130, valueFormatter: params => Number(params.value).toLocaleString() },
         { field: 'destinationCountry', sortable: true, headerName: " کشور مقصد", filter: 'agTextColumnFilter', width: 160 },
         {
