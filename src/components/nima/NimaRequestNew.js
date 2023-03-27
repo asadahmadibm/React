@@ -61,7 +61,7 @@ const NimaRequestNew = () => {
         { field: 'exchangeId', sortable: true, headerName: "گد صرافی", filter: 'agNumberColumnFilter', width: 170 },
         { field: 'currencyId', sortable: true, headerName: "نوع ارز", filter: 'agNumberColumnFilter', width: 130, valueFormatter: params => Number(params.value).toLocaleString() },
         { field: 'currencyName', sortable: true, headerName: " نام ارز", filter: 'agTextColumnFilter', width: 160 },
-        { field: 'amount', sortable: true, headerName: " مبلغ ارز", filter: 'agTextColumnFilter', width: 160 },
+        { field: 'amount', sortable: true, headerName: " مقدار ارز", filter: 'agTextColumnFilter', width: 160 },
         { field: 'currencyUnitPrice', sortable: true, headerName: " قيمت واحد", filter: 'agTextColumnFilter', width: 160 },
         { field: 'iRRWage', sortable: true, headerName: "  کارمزد ریالی", filter: 'agTextColumnFilter', width: 160 },
         { field: 'transferDelayTime', sortable: true, headerName: "  حداکثر زمان صدور حواله", filter: 'agTextColumnFilter', width: 160 },
