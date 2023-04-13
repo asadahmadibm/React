@@ -196,6 +196,7 @@ if it not work try
 
 	npm install --save ag-grid-community
 	npm install --save ag-grid-react
+	npm install --save ag-grid-enterprise
 	
 	import { AgGridReact } from 'ag-grid-react';
 	import 'ag-grid-community/styles/ag-grid.css';
@@ -333,3 +334,48 @@ if it not work try
 	export default instance;
 	  
 	
+# datepicker shamsi
+
+	https://shahabyazdi.github.io/react-multi-date-picker/fa/installation/
+
+	npm install --save react-multi-date-picker
+
+	import DatePicker from "react-multi-date-picker"
+	import persian from "react-date-object/calendars/persian"
+	import persian_fa from "react-date-object/locales/persian_fa"
+	import InputIcon from "react-multi-date-picker/components/input_icon"
+	
+	before class :
+	
+	const DatePickerCustom = ({ value, onChange }) => {
+	    return <DatePicker
+	    render={<InputIcon/>}
+		value={value}
+		onChange={onChange}
+		calendar={persian}
+		locale={persian_fa}
+	    ></DatePicker>
+	};
+	
+	inside class
+	
+	const onchangebirthDate= (value) => {
+        // console.log(value.convert(gregorian, persian_en).format("YYYY/MM/DD"));
+        form.setFieldValue("birthdate", value.year + "/" + value.month + "/" + value.day);
+        // console.log(x);
+
+        }
+	
+	<Form.Item
+	    label=" تاریخ تولد"
+	    name="birthdate"
+	    rules={[
+		{
+		    required: true,
+		    message: 'لطفا تاریخ تولد  را وارد نمایید',
+		},
+	    ]}
+	>
+	    <DatePickerCustom onChange={onchangebirthDate}/>
+	</Form.Item>
+

@@ -416,25 +416,26 @@ const CompanyDetail = () => {
     };
 
 
-    useEffect(() => {
-        axios.post("/CRM_Region")
-            .then(res => {
-                //    form.setFieldsValue(res.data.data[0]);
-                console.log(res.data.data.list);
-                document.body.classList.remove('loading-indicator');
-            }).catch(err => {
-                toast.warn("اشکال در فراخوانی اتطلاعات");
+    // useEffect(() => {
+    //     axios.post("/CRM_Region")
+    //         .then(res => {
+    //             //    form.setFieldsValue(res.data.data[0]);
+    //             console.log(res.data.data.list);
+    //             document.body.classList.remove('loading-indicator');
+    //         }).catch(err => {
+    //             toast.warn("اشکال در فراخوانی اتطلاعات");
+    //             document.body.classList.remove('loading-indicator');
 
-            }).finally(() => {
-            });
+    //         }).finally(() => {
+    //         });
 
-    }, []);
+    // }, []);
 
 
 
 
     return (
-        <Card type="inner" title="جزییات  شرکت" size="default" extra={
+        <Card type="inner" title="جزییات  شرکت" size="default" className='padding0' extra={
             <Space wrap>
                 <Checkbox
                     checked={componentDisabled}
@@ -442,9 +443,9 @@ const CompanyDetail = () => {
                 >
                     Form disabled
                 </Checkbox>
-                <Button type="primary" htmlType="submit" onClick={onSave}>ذخیره  </Button>
-                <Button type="primary" danger htmlType="button" onClick={onFill}>پر نمودن فرم </Button>
-                <Button htmlType="button" onClick={onReset}>  پاکسازی فرم </Button>
+                <Button type='primary'  htmlType="submit" onClick={onSave}>ذخیره  </Button>
+                <Button  danger htmlType="button" onClick={onFill}>پر نمودن فرم </Button>
+                <Button  htmlType="button" onClick={onReset}>  پاکسازی فرم </Button>
             </Space>
 
         }>
@@ -633,6 +634,12 @@ const CompanyDetail = () => {
                                 {
                                     key: '1',
                                     label: `محصولات`,
+                                    // style:{
+                                    //     width: '100vw',
+                                    //     height: '100vh',
+                                    //     textAlign: 'center',
+                                    //     background: 'rgba(0,255,0,0.02)',
+                                    //   },
                                     children:
                                         <Col lg={8} md={12} xs={24} sm={12}  xl={6} xxl={4}  >
                                             <div style={{ height: "300px", width: "100%" }}>

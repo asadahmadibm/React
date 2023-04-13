@@ -29,6 +29,8 @@ import { Dropdown, Space } from 'antd';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import React, { useState } from 'react';
 import NimaRequest from './nima/NimaRequest';
+import NimaRequestNew from './nima/NimaRequestNew';
+
 const { Header, Sider, Content } = Layout;
 function getItem(label, key, icon, children) {
     return {
@@ -47,7 +49,11 @@ const items = [
         getItem('گزارش از پرداختهای ریالی ', '7'),
         getItem('گزارش خرید و فروش ارز ', '9'),
     ]),
-    getItem('نیما', 'sub2', "", [getItem('درحواستهای فعال', '6')]),
+    getItem('نیما', 'sub2', "", [
+        getItem('درحواستهای فعال', '6'),
+        getItem('درحواستهای فعال جدید', '13'),
+
+    ]),
     getItem('مدیریت ارتباط با مشتری', 'sub3', "", [
         // getItem('جزییات ', '10'),
         getItem('لیست شرکت ', '11'),
@@ -75,6 +81,8 @@ const MainLayoutNew = () => {
             navigate("/SarafiManagment")
         if (e.key === "6")
             navigate("/NimaRequest")
+            if (e.key === "13")
+            navigate("/NimaRequestNew")
         if (e.key === "7")
             navigate("/RialiPaymentReport")
         if (e.key === "8")
@@ -93,7 +101,9 @@ const MainLayoutNew = () => {
     const [current, setCurrent] = useState('mail');
     return (
         <Layout>
-            <Sider trigger={null} collapsible collapsed={collapsed}>
+            <Sider trigger={null} collapsible collapsed={collapsed} 
+            reverseArrow={true}
+            >
                 <div className='logo'></div>
                 <Menu onClick={onClick}
                     theme="dark"
@@ -110,6 +120,7 @@ const MainLayoutNew = () => {
                         background: colorBgContainer,
                     }}
                 >
+                     <Space align="center">
                     {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                         className: 'trigger',
                         style :{
@@ -117,7 +128,7 @@ const MainLayoutNew = () => {
                         },
                         onClick: () => setCollapsed(!collapsed),
                     })}
-                    <Space >
+                   
                         <Button type="" htmlType="button"
                             style={{
                                 color: 'white',
@@ -129,8 +140,9 @@ const MainLayoutNew = () => {
                     style={{
                         margin: '8px 8px',
                         padding: '15px 20px',
-                        minHeight: 650,
-                        background: colorBgContainer,
+                        //minHeight: 650,
+                        // height: '90vh',
+                        background: 'white',
                     }}
                 >
                     <Routes>
@@ -143,6 +155,7 @@ const MainLayoutNew = () => {
                         <Route exact path='/RialiPaymentReport' element={<RialiPaymentReport />} />
                         <Route exact path='/RialiPaymentDetail' element={<RialiPaymentDetail />} />
                         <Route exact path='/NimaRequest' element={<NimaRequest />} />
+                        <Route exact path='/NimaRequestNew' element={<NimaRequestNew />} />
                         <Route exact path='/CompanyDetail' element={<CompanyDetail />} />
                         <Route exact path='/CompanyReport' element={<CompanyReport />} />
                         <Route exact path='/Region' element={<Region />} />

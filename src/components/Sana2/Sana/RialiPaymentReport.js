@@ -467,7 +467,7 @@ const RialiPaymentReport = () => {
         gridApi.setFilterModel(hardcodedFilter)
     };
     return (
-        <Card type="inner" title="گزارش از پرداختهای ریالی" size="default" extra={
+        <Card type="inner" title="گزارش از پرداختهای ریالی" size="default" className='padding0' extra={
             <Form ref={formRef} name="basic" onFinish={onFinish} 
             style={{
               //  height:40,

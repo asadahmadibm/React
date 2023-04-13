@@ -341,7 +341,7 @@ const Report = () => {
 
 
   return (
-    <Card type="inner" title="گزارش آماری" size="default" 
+    <Card type="inner" title="گزارش آماری" size="default" className='padding0'
       
     >
       <div style={{ height: "76vh", width: "100%" }}>
