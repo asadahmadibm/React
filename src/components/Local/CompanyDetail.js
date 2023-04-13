@@ -2,10 +2,9 @@ import react, { useState, useMemo, useCallback, useRef } from 'react'
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from "react-router-dom";
-import { AutoComplete, Checkbox, Button, Switch, InputNumber, Space, Select, Form, Input, message, Tabs, TreeSelect } from 'antd';
+import { AutoComplete, Row,Col,Checkbox, Button, Switch, InputNumber, Space, Select, Form, Input, message, Tabs, TreeSelect } from 'antd';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import { DatePicker, ConfigProvider, Card } from "antd";
@@ -453,8 +452,8 @@ const CompanyDetail = () => {
             <Form ref={formRef} form={form} name="basic" onFinish={onFinish} disabled={componentDisabled}>
                 {/* <Space size={[8, 45]} wrap> */}
                 <Row>
-                    <Col lg={3} md={6} sm={12} >
-                        <Form.Item label="کد" name="companycode" className='ant-input-group-addon'
+                 {/*   <Col lg={8} md={6} xs={24} sm={12}  xl={6} xxl={4}  >
+                        <Form.Item label="کد" name="companycode"
                             rules={[
                                 {
                                     // type: 'number',
@@ -469,7 +468,7 @@ const CompanyDetail = () => {
 
                         </Form.Item>
                     </Col>
-                    <Col lg={3} md={6} sm={12} >
+                     <Col lg={8} md={6} xs={24} sm={12}  xl={6} xxl={4}  >
                         <Space.Compact block size="small">
 
                             <Form.Item name="chkcustomer" valuePropName="checked">
@@ -486,12 +485,12 @@ const CompanyDetail = () => {
                                 <Checkbox>عدم ارسال ایمیل</Checkbox>
                             </Form.Item>
                         </Space.Compact>
-                    </Col>
-                    <Col lg={3} md={6} sm={12} >
+                    </Col> 
+                    <Col lg={8} md={6} xs={24} sm={12}  xl={6} xxl={4}  >
 
-                    </Col>
-                    <Col lg={6} md={12} sm={12} >
-                        <Form.Item label="نام" name="companyname" className='ant-input-group-addon'
+                    </Col>*/}
+                    <Col lg={8} md={12} xs={24} sm={12}  xl={6} xxl={4} >
+                        <Form.Item label="نام" name="companyname"
                             rules={[
                                 {
                                     required: true,
@@ -502,8 +501,8 @@ const CompanyDetail = () => {
 
                         </Form.Item>
                     </Col>
-                    <Col lg={3} md={6} sm={12} >
-                        <Form.Item name="group" label="  گروه " className='ant-input-group-addon'
+                    <Col lg={8} md={6} xs={24} sm={12}  xl={6} xxl={4}  >
+                        <Form.Item name="group" label="  گروه "
                         // rules={[
                         //     {
                         //         required: true,
@@ -524,8 +523,8 @@ const CompanyDetail = () => {
                             />
                         </Form.Item>
                     </Col>
-                    <Col lg={3} md={6} sm={12} >
-                        <Form.Item name="industry" label="  صنعت " className='ant-input-group-addon'
+                    <Col lg={8} md={6} xs={24} sm={12}  xl={6} xxl={4}  >
+                        <Form.Item name="industry" label="  صنعت "
                         // rules={[
                         //     {
                         //         required: true,
@@ -546,8 +545,8 @@ const CompanyDetail = () => {
                             />
                         </Form.Item>
                     </Col>
-                    <Col lg={6} md={12} sm={12} >
-                        <Form.Item label="آدرس" name="address" className='ant-input-group-addon'
+                    <Col lg={8} md={6} xs={24} sm={12}  xl={6} xxl={4}  >
+                        <Form.Item label="آدرس" name="address"
                             rules={[
                                 {
                                     required: true,
@@ -561,8 +560,8 @@ const CompanyDetail = () => {
                         </Form.Item>
                     </Col>
 
-                    <Col lg={3} md={6} sm={12} >
-                        <Form.Item label="ناحیه" name="region" className='ant-input-group-addon'>
+                    <Col lg={8} md={6} xs={24} sm={12}  xl={6} xxl={4}  >
+                        <Form.Item label="ناحیه" name="region">
                             {/* <Input placeholder="  ناحیه "></Input> */}
                             <TreeSelect
                                 showSearch
@@ -590,52 +589,52 @@ const CompanyDetail = () => {
                             />
                         </Form.Item>
                     </Col>
-                    <Col lg={3} md={6} sm={12} >
-                        <Form.Item label="ایمیل" name="email" className='ant-input-group-addon'>
+                    <Col lg={8} md={6} xs={24} sm={12}  xl={6} xxl={4}  >
+                        <Form.Item label="ایمیل" name="email">
                             <Input placeholder="  ایمیل "></Input>
                         </Form.Item>
                     </Col>
 
-                    <Col lg={3} md={6} sm={12} >
-                        <Form.Item label="معرف" name="moaref" className='ant-input-group-addon'>
+                    <Col lg={8} md={6} xs={24} sm={12}  xl={6} xxl={4}  >
+                        <Form.Item label="معرف" name="moaref">
                             <Input placeholder="  معرف "></Input>
                         </Form.Item>
                     </Col>
-                    <Col lg={3} md={6} sm={12} >
-                        <Form.Item label="خریدار" name="buyer" className='ant-input-group-addon'>
+                    <Col lg={8} md={6} xs={24} sm={12}  xl={6} xxl={4}  >
+                        <Form.Item label="خریدار" name="buyer">
                             <Input placeholder="  خریدار "></Input>
                         </Form.Item>
                     </Col>
-                    <Col lg={3} md={6} sm={12} >
-                        <Form.Item label="ثبت کننده" name="registrator" className='ant-input-group-addon' >
+                    <Col lg={8} md={6} xs={24} sm={12}  xl={6} xxl={4}  >
+                        <Form.Item label="ثبت کننده" name="registrator" >
                             <Input placeholder="  ثبت کننده " disabled={true}></Input>
                         </Form.Item>
                     </Col>
-                    <Col lg={3} md={6} sm={12} >
-                        <Form.Item label="توضیحات" rows={4} name="description" className='ant-input-group-addon'>
+                    <Col lg={8} md={6} xs={24} sm={12}  xl={6} xxl={4}  >
+                        <Form.Item label="توضیحات" rows={4} name="description">
                             {/* <Input rows={4} placeholder="  توضیحات "></Input> */}
                             <TextArea rows={4} />
                         </Form.Item>
                     </Col>
-                    <Col lg={6} md={12} sm={12} >
-                        <Form.Item label="گروه انتخابی" name="selectivegroup" className='ant-input-group-addon'>
+                    <Col lg={8} md={12} xs={24} sm={12}  xl={6} xxl={4}  >
+                        <Form.Item label="گروه انتخابی" name="selectivegroup">
                             <Input placeholder="  گروه انتخابی "></Input>
                         </Form.Item>
                     </Col>
-                    <Col lg={3} md={6} sm={12} >
+                    <Col lg={8} md={6} xs={24} sm={12}  xl={6} xxl={4}  >
                         <Form.Item label=" تاریخ ثبت" name="registerDate">
                             <DatePickerCustom onChange={onchangeDate} />
 
                         </Form.Item>
                     </Col>
-                    <Col lg={12} md={12} sm={12} >
+                    <Col lg={12} md={12} xs={24} sm={12}  xl={6} xxl={4}  >
                         <Tabs type='card' defaultActiveKey="1" items={
                             [
                                 {
                                     key: '1',
                                     label: `محصولات`,
                                     children:
-                                        <Col lg={6} md={12} sm={12} >
+                                        <Col lg={8} md={12} xs={24} sm={12}  xl={6} xxl={4}  >
                                             <div style={{ height: "300px", width: "100%" }}>
                                                 <AgGridReact
                                                     // onGridReady={onGridReady}
@@ -659,7 +658,7 @@ const CompanyDetail = () => {
                                     key: '2',
                                     label: `شماره تماس`,
                                     children:
-                                        <Col lg={6} md={12} sm={12} >
+                                        <Col lg={8} md={12} xs={24} sm={12}  xl={6} xxl={4}  >
                                             <div style={{ height: "300px", width: "100%" }}>
                                                 <AgGridReact
                                                     // onGridReady={onGridReady}
@@ -682,7 +681,7 @@ const CompanyDetail = () => {
                                     key: '3',
                                     label: `رابط ها`,
                                     children:
-                                        <Col lg={12} md={12} sm={12} >
+                                        <Col lg={12} md={12} xs={24} sm={12}  xl={6} xxl={4}  >
                                             <div style={{ height: "300px", width: "100%" }}>
                                                 <AgGridReact
                                                     // onGridReady={onGridReady}

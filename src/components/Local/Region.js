@@ -1,4 +1,4 @@
-import { Input, Tree, Card } from 'antd';
+import { Input, Tree, Card, Button, InputNumber,Space } from 'antd';
 import { useMemo, useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -195,8 +195,11 @@ const Region = () => {
           });
         return loop(defaultData);
       }, [searchValue]);
+      const [Selectedtree,setSelectedtree]=useState('')
+      const [nodetext,setNodetext]=useState('')
     const onSelect = (selectedKeys, info) => {
         console.log('selected', selectedKeys, info);
+        setSelectedtree(selectedKeys)
     };
 
     // const [treeData, setTreeData] = useState([
@@ -207,12 +210,27 @@ const Region = () => {
     //         //     {
     //     }
     // ])
+    const onclick=() =>{
+        console.log(Selectedtree);
+        const node = defaultData.find(( key ) => key === 1);;
+        const { key,title } = node;
+        treeData.push({
+            key:nodetext,
+            title: nodetext,
+        });
+    }
+    const changetext=(e)=>{
+        console.log(e.target.value);
+        setNodetext(e.target.value);
+       
+    }
 
     return (
         <Card type="inner" title="لیست  نواحی" size="default"  >
             <div style={{ height: "76vh", width: "100%" }}>
                 <Row>
                     <Col lg={3} md={6} sm={12}>
+                        <Space>
                         <Search
                             style={{
                                 marginBottom: 8,
@@ -220,6 +238,9 @@ const Region = () => {
                             placeholder="جستجو"
                             onChange={onChange}
                         />
+                        <Input onChange={changetext}></Input>
+                        <Button onClick={onclick}>ایجاد</Button>
+                        </Space>
                         <Tree
                             // checkable 
                             onExpand={onExpand}
